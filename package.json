@@ -1,0 +1,33 @@
+{
+  "name": "yet-another-startpage",
+  "version": "0.1.0",
+  "description": "startpage similar to tilde2022",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "start": "webpack server --mode=development"
+  },
+  "author": "Ravikiran Kawade",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "core-js": "^3.21.1",
+    "dotenv": "^16.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "regenerator-runtime": "^0.13.9",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.7.1",
+    "dotenv-webpack": "^7.1.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}

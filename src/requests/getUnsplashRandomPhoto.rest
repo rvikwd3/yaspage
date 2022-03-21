@@ -1,0 +1,5 @@
+GET https://api.unsplash.com/photos/random
+    ?orientation=landscape
+    &collections=317099
+Content-Type: application/json
+Authorization: Client-ID {{$dotenv UNSPLASH_CLIENT_ID}}
