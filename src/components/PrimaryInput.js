@@ -21,7 +21,7 @@ const PrimaryInput_Styled = styled(PrimaryInput)`
 
   // font
   font-weight: 700;
-  font-size: clamp(50px, 4vw, 70px); // scale font size with width
+  font-size: clamp(60px, 4vw, 80px); // scale font size with width
   color: ${props => props.textColor};
 
   text-shadow: 2px 5px 10px rgba(0,0,0,0.5);

@@ -3,7 +3,7 @@ const suggestionDefaults = [
   * Default search suggestions for the specified queries
   */
   {
-    key: 'lq',
+    key: ['lq', 'liquipedia'],
     suggestions: [
       {
         name: '!lq upcoming',
@@ -12,7 +12,7 @@ const suggestionDefaults = [
     ]
   },
   {
-    key: 't',
+    key: ['t', 'twitch'],
     suggestions: [
       {
         name: '!t following',
@@ -21,7 +21,7 @@ const suggestionDefaults = [
     ]
   },
   {
-    key: 'tw',
+    key: ['tw', 'twitter'],
     suggestions: [
       {
         name: '!tw home',
@@ -34,7 +34,7 @@ const suggestionDefaults = [
     ]
   },
   {
-    key: 'r',
+    key: ['r', 'reddit'],
     suggestions: [
       {
         name: '!r dota2',

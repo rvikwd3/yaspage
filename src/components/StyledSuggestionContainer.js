@@ -28,7 +28,7 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
 
     // search commands
     const matchingCommand = commands.find(command =>
-      command.key === primaryInput
+      command.key.includes(primaryInput)
     )
 
     if (matchingCommand) {
@@ -43,7 +43,7 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
 
     // config default suggestions based on keywords
     const matchingDefaultSuggestion = defaultSuggestions.find(suggestion =>
-      suggestion.key === primaryInput
+      suggestion.key.includes(primaryInput)
     )
 
     if (matchingDefaultSuggestion) {

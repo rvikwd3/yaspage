@@ -31,7 +31,8 @@ const suggestionsKeyEventHandler = (event, hlIndex, setHlIndex, suggestions, set
       }
     },
     'Enter': () => {
-      // if there is a highlighted suggestion, redirect to its url
+      // if there is a suggestion, redirect to its url
+      // prioritize highlighted suggestions
       if (suggestions.length > 0) {
         if (hlIndex === 0 )  window.location.href = suggestions[0].url  // if no highlight but there is command go to command url
 
