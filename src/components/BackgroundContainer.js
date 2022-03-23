@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getUnsplashBackground } from '../getUnsplashBackground'
+import { getUnsplashBackground } from '../utils/getUnsplashBackground'
 
 import Background from './Background'
 
@@ -36,7 +36,6 @@ const BackgroundContainer = () => {
 
 const secElapsedFromNow = (givenDate) => {
   const diffTime = new Date() - new Date(givenDate)
-  console.log('diff', diffTime, ' given', givenDate)
   return (diffTime / 1000)
 }
 

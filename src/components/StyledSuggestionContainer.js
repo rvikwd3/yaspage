@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import styled from 'styled-components'
 
+import useKeydownCatcher from '../hooks/useKeydownCatcher'
+
+import suggestionsKeyEventHandler from '../utils/suggestionsKeyEventHandler'
 import commands from '../commands'
 import defaultSuggestions from '../suggestionDefaults'
+
 
 import StyledSuggestion from './Suggestion'
 
@@ -13,7 +17,10 @@ import StyledSuggestion from './Suggestion'
 //      1. commands
 //      2. search suggestions
 const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) => {
+
   const [suggestionsToShow, setSuggestionsToShow] = useState([])
+  const [highlightIndex, setHighlightIndex] = useState(0)
+  const keydownEvent = useKeydownCatcher()
 
   const getSuggestionsForInput = (primaryInput) => {
     if (primaryInput === '') return []   // dont look for suggestions when empty input
@@ -34,9 +41,6 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
       suggestions = suggestions.concat(commandSuggestion)
     }
 
-    // google search suggestions
-    // todo
-
     // config default suggestions based on keywords
     const matchingDefaultSuggestion = defaultSuggestions.find(suggestion =>
       suggestion.key === primaryInput
@@ -51,15 +55,17 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
         })
       )
     }
-
     return suggestions
   }
 
+  // Update suggestions each time primary input changes
   useEffect(() => {
-    /* each render make a list of suggestions to show */
+    // set combined suggestions to show
     const suggestions = getSuggestionsForInput(primaryInput)
-
     setSuggestionsToShow(suggestions)
+
+    // reset highlightIndex
+    setHighlightIndex(0)
 
     // if a matchingCommand exists, set primary input text to its hex color
     suggestions[0]
@@ -67,8 +73,16 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
       : setPrimaryTextColor('white')
   }, [primaryInput])
 
-  if (suggestionsToShow.length === 0) return null
+  // Perform keydown action on each keypress
+  useEffect(() => {
+    const actionOnKeydown = suggestionsKeyEventHandler(keydownEvent, highlightIndex, setHighlightIndex, suggestionsToShow, setSuggestionsToShow)
+    console.log('suggestionHandler', actionOnKeydown)
+    if (actionOnKeydown) {
+      actionOnKeydown()
+    }
+  }, [keydownEvent])
 
+  if (suggestionsToShow.length === 0) return null
   return (
     <div className={className}>
       {suggestionsToShow.map(suggestion => (
@@ -77,7 +91,8 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
           content={suggestion.content}
           iconUrl={suggestion.iconUrl}
           url={suggestion.url}
-          hex={ suggestion.hex || '' }  // if hex isn't in the suggestion give falsey empty string
+          highlight={suggestion.highlight}
+          hex={suggestion.hex || ''}  // if hex isn't in the suggestion give falsey empty string
         />
       ))}
     </div>
@@ -88,14 +103,16 @@ const StyledSuggestionContainer = styled(SuggestionContainer)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 7px;
+  gap: 10px;
 
   width: 33%;
   padding: 15px;
-  border-radius: 50px;
+  /* border-radius: 50px; */
   margin: auto;
-  background-color: rgb(0,0,0,0.3);
-  box-shadow: 1px 4px 10px rgba(0,0,0,0.1);
+
+  z-index: 10;
+  /* background-color: rgb(0,0,0,0.23);
+  box-shadow: 1px 4px 10px rgba(0,0,0,0.1); */
 
   // grid item
   grid-row: 2;

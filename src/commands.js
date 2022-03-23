@@ -13,14 +13,14 @@ const commands =
       name: 'twitch',
       url: 'https://www.twitch.tv/directory/following',
       iconUrl: 'icons/twitch.png',
-      hex: { primary: '#6441A5', secondary: '#e6ddf0' }
+      hex: { primary: '#805fbf', secondary: '#e6ddf0' }
     },
     {
       key: 'tw',
       name: 'twitter',
       url: 'https://www.twitter.com/',
       iconUrl: 'icons/twitter.png',
-      hex: { primary: '#26a7de', secondary: '#e3f0fa' }
+      hex: { primary: '#5fbee7', secondary: '#e3f0fa' }
     },
     {
       key: 'lq',
@@ -48,7 +48,7 @@ const commands =
       name: 'LD2L',
       url: 'https://ld2l.gg/',
       iconUrl: 'icons/ld2l.png',
-      hex: { primary: '#3B6A8C', secondary: '#ffffff' }
+      hex: { primary: '#fa6b6b', secondary: '#ffffff' }
     }
 
   ]

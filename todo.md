@@ -2,14 +2,13 @@
 
 ### Landing
 - [x] Clock/Date landing page
-- [ ] On keydown:
-- [ ] Capture keydown and send to primaryInput
+- [x] Capture non-control keydown and send to primaryInput
 
 ### Interface
-- [ ] When primaryInput is empty go back to landing page
-- [ ] Press Enter on command to go to URL
-- [ ] Press Down to go through suggestions
-- [ ] Press ESC to go back to landing page
+- [x] When primaryInput is empty, and backspace is pressed, go back to landing page
+- [x] Press Enter on command to go to URL
+- [x] Press Down to go through suggestions
+- [x] Press ESC to go back to landing page
 
 ### Suggestions
 - [ ] Add DuckDuckGo Query API suggestions
@@ -21,3 +20,4 @@
 
 ### Background
 - [x] Implement Unsplash random pic API (landscape, crop 1920px)
+- [x] Animate opacity transition on background load

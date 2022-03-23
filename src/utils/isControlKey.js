@@ -1,0 +1,42 @@
+export const isControlKey = (k) => {
+  if (
+        k === 'Caps Lock'
+    ||  k === 'Shift'
+    ||  k === 'Alt'
+    ||  k === 'F1' 
+    ||  k === 'F2' 
+    ||  k === 'F3' 
+    ||  k === 'F4' 
+    ||  k === 'F5' 
+    ||  k === 'F6' 
+    ||  k === 'F7' 
+    ||  k === 'F8' 
+    ||  k === 'F9' 
+    ||  k === 'F10' 
+    ||  k === 'F11' 
+    ||  k === 'F12' 
+    ||  k === 'NumLock'
+    ||  k === 'Tab'
+    ||  k === 'Escape'
+    ||  k === 'Control'
+    ||  k === 'OS'
+    ||  k === 'Pause'
+    ||  k === 'ContextMenu'
+    ||  k === 'Home'
+    ||  k === 'End'
+    ||  k === 'ArrowUp'
+    ||  k === 'ArrowDown'
+    ||  k === 'ArrowLeft'
+    ||  k === 'ArrowRight'
+    ||  k === 'Insert'
+    ||  k === 'PageUp'
+    ||  k === 'PageDown'
+    ||  k === 'ScrollLock'
+    ||  k === 'Backspace'
+    ||  k === 'Delete'
+    ||  k === 'Enter'
+  ) {
+    return true
+  }
+  return false
+}
