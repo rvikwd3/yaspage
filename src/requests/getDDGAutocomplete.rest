@@ -1,0 +1,3 @@
+GET https://duckduckgo.com/ac/
+    ?q=QUERY
+    &type=list

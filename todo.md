@@ -11,7 +11,8 @@
 - [x] Press ESC to go back to landing page
 
 ### Suggestions
-- [ ] Add DuckDuckGo Query API suggestions
+- [x] Add DuckDuckGo Query API suggestions
+- [ ] Fix multiple re-render pending useEffect
 - [ ] Transitions/Framer motion on incoming/outgoing suggestions
 
 ### Extra Panels
@@ -21,3 +22,4 @@
 ### Background
 - [x] Implement Unsplash random pic API (landscape, crop 1920px)
 - [x] Animate opacity transition on background load
+- [ ] Progressive image on load from small to w=1920

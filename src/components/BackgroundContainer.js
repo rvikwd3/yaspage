@@ -9,7 +9,9 @@ import Background from './Background'
 // save image url as localBackgroundUrl
 // save current date as lastUnsplashApiCallDate
 const BackgroundContainer = () => {
-  const [backgroundUrl, setBackgroundUrl] = useState('')
+  const [highResUrl, setHighResUrl] = useState('')
+  const [lowResUrl, setLowResUrl] = useState('')
+  const [apiPending, setApiPending] = useState(true)
 
   useEffect(async () => {
     const { localBackgroundUrl, lastUnsplashApiCallDate } = JSON.parse(window.localStorage.getItem('yaspage'))
@@ -17,20 +19,27 @@ const BackgroundContainer = () => {
     const secDiff = secElapsedFromNow(lastUnsplashApiCallDate)
 
     if (secDiff < (10 * 60)) {
-      setBackgroundUrl(localBackgroundUrl)
+      setHighResUrl(localBackgroundUrl)
+      setApiPending(false)
     } else {
-      const apiBackgroundUrl = await getUnsplashBackground()
+      const apiBackgroundUrls = await getUnsplashBackground()
+      const apiHighResUrl = apiBackgroundUrls.raw + '&q=85&w=1920'
+      const apiLowResUrl = apiBackgroundUrls.small
+
+      setHighResUrl(apiHighResUrl)
+      setLowResUrl(apiLowResUrl)
+      setApiPending(false)
+
       window.localStorage.setItem('yaspage', JSON.stringify({
-        localBackgroundUrl: apiBackgroundUrl,
+        localBackgroundUrl: apiHighResUrl,
         lastUnsplashApiCallDate: new Date()
       }))
-      setBackgroundUrl(apiBackgroundUrl)
     }
 
   }, [])
 
   return (
-    <Background url={backgroundUrl}/>
+    !apiPending && <Background highResUrl={highResUrl} lowResUrl={lowResUrl}/>
   )
 }
 

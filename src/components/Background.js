@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styled, { keyframes } from 'styled-components'
-import LandingContainer from './LandingContainer'
+import ProgressiveImageFC from '../utils/ProgressiveImageFC'
 
 const backgroundConfig = {
   opacity: 0.88,
@@ -48,6 +48,9 @@ const BackgroundDiv = styled.div`
   width: 100%;
   height: 100%;
 
+  object-fit: cover;
+  transition: opacity .5s linear;
+
   z-index: -1;
 `
 
@@ -55,16 +58,20 @@ const BackgroundDiv = styled.div`
 * on <img onLoad> load set state to true
 * on true state, visibility transitions to visible
 */
-const Background = ({ url }) => {
+const Background = ({ highResUrl, lowResUrl }) => {
   const [isImgLoaded, setIsImgLoaded] = useState(false)
 
   return (
     <BackgroundDiv>
-      <BackgroundImg
+      <ProgressiveImageFC
+        src={highResUrl}
+        placeholder={lowResUrl}
+      />
+      {/* <BackgroundImg
         src={url}
         isImgLoaded={isImgLoaded}
         onLoad={() => setIsImgLoaded(true)}
-      />
+      /> */}
     </BackgroundDiv>
   )
 }

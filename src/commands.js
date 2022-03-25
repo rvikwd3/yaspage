@@ -27,7 +27,7 @@ const commands =
       name: 'liquipedia',
       url: 'https://liquipedia.net/dota2/Main_Page',
       iconUrl: 'icons/liquipedia_51x36.png',
-      hex: { primary: '#b12a2a', secondary: '#fbdfdf' }
+      hex: { primary: '#074e88', secondary: '#fbdfdf' }
     },
     {
       key: ['f', 'figma'],

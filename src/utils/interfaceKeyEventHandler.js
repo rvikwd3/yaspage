@@ -33,7 +33,7 @@ const interfaceKeyEventHandler = (event, input, setInput, setPage) => {
   const isControl = isControlKey(event.key) ? event.key : 'non-control'
   // console.log('isControlKey: ', isControlKey(event.key) ? event.key : 'non-control')
   
-  const handler = inputCmds[isInputEmpty][isCtrlKey][isControl]
+  const handler = inputCmds?.[isInputEmpty]?.[isCtrlKey]?.[isControl]
   return handler
 }
 

@@ -1,13 +1,11 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-import useKeydownCatcher from '../hooks/useKeydownCatcher'
-
-import suggestionsKeyEventHandler from '../utils/suggestionsKeyEventHandler'
 import commands from '../commands'
 import defaultSuggestions from '../suggestionDefaults'
-
-
+import useKeydownCatcher from '../hooks/useKeydownCatcher'
+import suggestionsKeyEventHandler from '../utils/suggestionsKeyEventHandler'
+import buildAutocompleteSuggestions from '../utils/buildAutocompleteSuggestions'
 import StyledSuggestion from './Suggestion'
 
 
@@ -22,61 +20,111 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
   const [highlightIndex, setHighlightIndex] = useState(0)
   const keydownEvent = useKeydownCatcher()
 
-  const getSuggestionsForInput = (primaryInput) => {
-    if (primaryInput === '') return []   // dont look for suggestions when empty input
+  const callAutocompleteScript = (componentCallback) => {
+    const script = document.createElement('script');
+    const url = process.env.DDG_AUTOCOMPLETE_URL + primaryInput
+    script.src = url
+    script.defer = true;
+    document.head.appendChild(script);
+
+    if (componentCallback && typeof window != "undefined") {   // in case SSR server side rendering
+      window.autocompleteCallback = (res) => {
+        console.log(`%cCALLBACK`, "color: lightgreen;");
+        componentCallback(res)
+      }
+    }
+
+    return script // return script object to be removed on unmount by useEffect
+  }
+
+  const getSuggestionsForInput = () => {
+    if (primaryInput === '') {   // dont look for suggestions when empty input
+      return []
+    }
     let suggestions = []
 
-    // search commands
-    const matchingCommand = commands.find(command =>
-      command.key.includes(primaryInput)
-    )
-
+    // get commands
+    const matchingCommand = commands.find(command => command.key.includes(primaryInput))
     if (matchingCommand) {
       const commandSuggestion = {
         content: matchingCommand.name,
         iconUrl: matchingCommand.iconUrl,
         hex: matchingCommand.hex,
-        url: matchingCommand.url
+        url: matchingCommand.url,
+        id: `${matchingCommand.name}_${matchingCommand.url}`
       }
       suggestions = suggestions.concat(commandSuggestion)
     }
 
-    // config default suggestions based on keywords
-    const matchingDefaultSuggestion = defaultSuggestions.find(suggestion =>
-      suggestion.key.includes(primaryInput)
-    )
-
+    // get default suggestions
+    const matchingDefaultSuggestion = defaultSuggestions.find(suggestion => suggestion.key.includes(primaryInput))
     if (matchingDefaultSuggestion) {
       // add each suggestion name in list to suggestions
-      matchingDefaultSuggestion.suggestions.map(suggestion =>
+      matchingDefaultSuggestion.suggestions.map(suggestion => {
         suggestions = suggestions.concat({
           content: suggestion.name,
-          url: suggestion.url
-        })
-      )
+          url: suggestion.url,
+          id: `${suggestion.name}_${suggestion.url}`
+        });
+        return suggestions;
+      })
     }
     return suggestions
   }
 
-  // Update suggestions each time primary input changes
-  useEffect(() => {
-    // set combined suggestions to show
-    const suggestions = getSuggestionsForInput(primaryInput)
-    setSuggestionsToShow(suggestions)
+  /*
+  * Get autocomplete suggestions
+  */
+  const getAutocompleteSuggestionsForInput = (res, prevSuggestions) => {
+    console.log('suggestionsToShow before appending async suggestions: ', prevSuggestions);
+    return [  // Set calculated suggestions
+      ...prevSuggestions,
+      ...buildAutocompleteSuggestions(res[1], prevSuggestions)
+    ]
+  }
 
+  /*
+  * Update autocomplete suggestions each time primary input changes
+  */
+  useEffect(() => {
+    // set non-async suggestions
+    setSuggestionsToShow(prevState => getSuggestionsForInput(primaryInput))
+
+    // set async suggestions to show
+    let autocompleteScript = null
+    let active = true
+
+    if (primaryInput.length > 1) {
+      autocompleteScript = callAutocompleteScript((scriptResponse) => {
+        if (active) {
+          console.log(`useEffect for %c'${primaryInput}' %cisActive?: %c${active}`, "color: DeepPink;", "", "color: Gold;");
+          setSuggestionsToShow(prevState => getAutocompleteSuggestionsForInput(scriptResponse, prevState))
+        }
+      })
+    }
+    return () => {
+      active = false
+      if (autocompleteScript)
+        document.head.removeChild(autocompleteScript)
+    }
+  }, [primaryInput])
+
+  useEffect(() => {
     // reset highlightIndex
     setHighlightIndex(0)
 
+    // reset suggestionCounter
+
     // if a matchingCommand exists, set primary input text to its hex color
-    suggestions[0]
-      ? setPrimaryTextColor(suggestions[0].hex.primary)
+    const matchingCommand = commands.find(command => command.key.includes(primaryInput))
+    matchingCommand
+      ? setPrimaryTextColor(matchingCommand.hex.primary)
       : setPrimaryTextColor('white')
   }, [primaryInput])
 
   // Perform keydown action on each keypress
   useEffect(() => {
     const actionOnKeydown = suggestionsKeyEventHandler(keydownEvent, highlightIndex, setHighlightIndex, suggestionsToShow, setSuggestionsToShow)
-    console.log('suggestionHandler', actionOnKeydown)
     if (actionOnKeydown) {
       actionOnKeydown()
     }
@@ -85,9 +133,9 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
   if (suggestionsToShow.length === 0) return null
   return (
     <div className={className}>
-      {suggestionsToShow.map(suggestion => (
+      {suggestionsToShow.slice(0,7).map(suggestion => (
         <StyledSuggestion
-          key={suggestion.content}
+          key={suggestion.id}
           content={suggestion.content}
           iconUrl={suggestion.iconUrl}
           url={suggestion.url}

@@ -11,7 +11,7 @@ const Suggestion = ({ content, iconUrl, hex, url, className }) => {
 }
 
 const StyledSuggestion = styled(Suggestion)`
-  width: 50%;
+  width: 80%;
   height: 38px;
   display: flex;
   align-items: center;

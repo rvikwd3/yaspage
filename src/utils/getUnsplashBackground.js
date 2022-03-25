@@ -10,14 +10,15 @@ export const getUnsplashBackground = async () => {
     }
   }
 
-  let resultUrl = process.env.DEFAULT_BACKGROUND_URL
+  let resultUrls = process.env.DEFAULT_BACKGROUND_URL
 
   try {
     const response = await axios.get(apiUrl, config)
-    resultUrl = response.data.urls.raw + '&q=85&w=1920'
+    // resultUrl = response.data.urls.raw + '&q=85&w=1920'
+    resultUrls = response.data.urls
   } catch (err) {
     console.log(err)
   }
 
-  return resultUrl
+  return resultUrls
 }
