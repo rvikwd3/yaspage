@@ -23,12 +23,6 @@ const Page = () => {
     />
   }
 
-  // setPage and get interface container preset with initial input
-  // const switchToInterfacePage = (initialInput) => {
-  //   setPageToShow('INTERFACE')
-  //   setInterfaceInput(initialInput)
-  // }
-
   // get landing container
   const getLandingPage = (props) => {
     return <LandingContainer

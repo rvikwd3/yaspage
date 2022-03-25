@@ -102,24 +102,21 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
         }
       })
     }
-    return () => {
-      active = false
-      if (autocompleteScript)
-        document.head.removeChild(autocompleteScript)
-    }
-  }, [primaryInput])
 
-  useEffect(() => {
     // reset highlightIndex
     setHighlightIndex(0)
-
-    // reset suggestionCounter
 
     // if a matchingCommand exists, set primary input text to its hex color
     const matchingCommand = commands.find(command => command.key.includes(primaryInput))
     matchingCommand
       ? setPrimaryTextColor(matchingCommand.hex.primary)
       : setPrimaryTextColor('white')
+
+    return () => {
+      active = false
+      if (autocompleteScript)
+        document.head.removeChild(autocompleteScript)
+    }
   }, [primaryInput])
 
   // Perform keydown action on each keypress

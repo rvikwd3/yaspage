@@ -4,6 +4,13 @@ const ProgressiveImageFC = ({ src, placeholder }) => {
   const [loading, setLoading] = useState(true)
   const [currentSrc, setCurrentSrc] = useState(placeholder)
 
+  const style = ({
+    width: "100%",
+    height: "100%",
+    opacity: loading ? "0.5" : "1",
+    transition: "opacity .5s ease-out",
+  })
+
   useEffect( () => {
     const imageToLoad = new Image()
     imageToLoad.src = src
@@ -15,6 +22,7 @@ const ProgressiveImageFC = ({ src, placeholder }) => {
 
   return (
     <img
+      style={style}
       src={currentSrc}
       className="ProgressiveImage"
     />

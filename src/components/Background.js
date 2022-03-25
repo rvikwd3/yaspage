@@ -49,7 +49,6 @@ const BackgroundDiv = styled.div`
   height: 100%;
 
   object-fit: cover;
-  transition: opacity .5s linear;
 
   z-index: -1;
 `

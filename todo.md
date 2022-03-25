@@ -12,8 +12,12 @@
 
 ### Suggestions
 - [x] Add DuckDuckGo Query API suggestions
-- [ ] Fix multiple re-render pending useEffect
+- [x] Fix multiple re-render pending useEffect
 - [ ] Transitions/Framer motion on incoming/outgoing suggestions
+
+### Custom Search Bangs (Maybe?)
+- [ ] Bang to custom search eg. "!yt hermitcraft season 9"
+- [ ] Check DDG Bang API
 
 ### Extra Panels
 - [ ] liquipedia upcoming matches
@@ -22,4 +26,4 @@
 ### Background
 - [x] Implement Unsplash random pic API (landscape, crop 1920px)
 - [x] Animate opacity transition on background load
-- [ ] Progressive image on load from small to w=1920
+- [x] Progressive image on load from small to w=1920
