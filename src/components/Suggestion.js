@@ -11,15 +11,17 @@ const Suggestion = ({ content, iconUrl, hex, url, className }) => {
 }
 
 const StyledSuggestion = styled(Suggestion)`
-  width: 80%;
+  width: auto;
   height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 13px;
 
+  padding: 2px 20px;
   border-radius: 50px;
   text-decoration: none;
+  white-space: nowrap;
 
   background-color: ${props => props.highlight ? 'rgba(0,0,0,0.37)' : 'rgba(0,0,0,0.17)'};
   box-shadow: 1px 4px 10px rgba(0,0,0,0.2);

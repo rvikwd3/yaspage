@@ -23,7 +23,7 @@ const CONFIG = {
   /*
   * Max number of suggestions that will be shown
   */
-  suggestionLimit: 5,
+  suggestionLimit: 6,
 }
 
 export default CONFIG

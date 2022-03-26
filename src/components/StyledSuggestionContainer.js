@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
+import CONFIG from '../config'
+
 import commands from '../commands'
 import defaultSuggestions from '../suggestionDefaults'
 import useKeydownCatcher from '../hooks/useKeydownCatcher'
@@ -121,7 +123,7 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
 
   // Perform keydown action on each keypress
   useEffect(() => {
-    const actionOnKeydown = suggestionsKeyEventHandler(keydownEvent, highlightIndex, setHighlightIndex, suggestionsToShow, setSuggestionsToShow)
+    const actionOnKeydown = suggestionsKeyEventHandler(keydownEvent, primaryInput, highlightIndex, setHighlightIndex, suggestionsToShow, setSuggestionsToShow)
     if (actionOnKeydown) {
       actionOnKeydown()
     }
@@ -130,7 +132,7 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
   if (suggestionsToShow.length === 0) return null
   return (
     <div className={className}>
-      {suggestionsToShow.slice(0,7).map(suggestion => (
+      {suggestionsToShow.slice(0,CONFIG.suggestionLimit).map(suggestion => (
         <StyledSuggestion
           key={suggestion.id}
           content={suggestion.content}
