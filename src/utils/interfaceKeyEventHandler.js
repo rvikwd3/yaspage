@@ -19,7 +19,8 @@ const interfaceKeyEventHandler = (event, input, setInput, setPage) => {
     'empty': {
       'normal': {
         'non-control': () => setInput(input.concat(event.key)),
-        'Backspace': () => setPage('LANDING')
+        'Backspace': () => setPage('LANDING'),
+        'Escape': () => setPage('LANDING'),
       }
     }
   }

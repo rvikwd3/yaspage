@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { motion, AnimatePresence } from 'framer-motion'
 
 import useKeydownCatcher from '../hooks/useKeydownCatcher'
 
