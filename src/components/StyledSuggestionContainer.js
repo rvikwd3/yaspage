@@ -152,12 +152,9 @@ const StyledSuggestionContainer = styled(SuggestionContainer)`
 
   width: 33%;
   padding: 15px;
-  /* border-radius: 50px; */
   margin: auto;
 
   z-index: 10;
-  /* background-color: rgb(0,0,0,0.23);
-  box-shadow: 1px 4px 10px rgba(0,0,0,0.1); */
 
   // grid item
   grid-row: 2;
