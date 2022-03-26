@@ -1,5 +1,6 @@
-import { useState, useEffect, useReducer } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import useKeydownCatcher from '../hooks/useKeydownCatcher'
 
@@ -22,11 +23,6 @@ const InterfaceContainer_Styled = styled.div`
   width: 100%;
 `
 
-/*
-*   TODO:
-*   When interfaceInput is '' and Backspace is pressed
-*   -> switch visibleContainer to 'LandingContainer'
-*/
 const InterfaceContainer = ({ setPageToShow, interfaceInput, setInterfaceInput }) => {
   const keydownEvent = useKeydownCatcher()
   const [primaryTextColor, setPrimaryTextColor] = useState('white')
@@ -41,7 +37,9 @@ const InterfaceContainer = ({ setPageToShow, interfaceInput, setInterfaceInput }
   }, [keydownEvent])
 
   return (
-    <InterfaceContainer_Styled>
+    <InterfaceContainer_Styled
+      key="InterfaceContainer_Styled"
+    >
       <PrimaryInput_Styled
         value={interfaceInput}
         textColor={primaryTextColor}

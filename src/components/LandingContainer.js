@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import useKeydownCatcher from '../hooks/useKeydownCatcher'
-
 import { isControlKey } from '../utils/isControlKey'
-
 import Clock_Styled from './Clock'
 import Date_Styled from './FormattedDate'
 
@@ -27,17 +26,10 @@ const DateTime_Grid = styled.div`
   top: 26%;
   left: 50%;
   transform: translate(-50%);
-
-  // Fade in Date Time Grid
-  animation: fadein 0.3s linear;
-
-  @keyframes fadein {
-    from {opacity: 0.5;}
-    to {opacity: 1;}
-  }
 `
 
 const LandingContainer = ({ setPageToShow, setInterfaceInput }) => {
+  const landingDivRef = useRef(null)
   // Keydown -> setKeydownEvent effect
   const keydownEvent = useKeydownCatcher()
 
@@ -54,7 +46,9 @@ const LandingContainer = ({ setPageToShow, setInterfaceInput }) => {
   }, [keydownEvent])
 
   return (
-    <DateTime_Grid>
+    <DateTime_Grid
+      key="DateTime_Grid"
+    >
       <Clock_Styled />
       <HorizontalRule_Styled />
       <Date_Styled />

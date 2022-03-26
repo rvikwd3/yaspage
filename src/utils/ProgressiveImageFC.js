@@ -9,6 +9,7 @@ const ProgressiveImageFC = ({ src, placeholder }) => {
     height: "100%",
     opacity: loading ? "0.5" : "1",
     transition: "opacity .5s ease-out",
+    objectFit: "cover",
   })
 
   useEffect( () => {

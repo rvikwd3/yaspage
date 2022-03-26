@@ -19,7 +19,7 @@ const StyledSuggestion = styled(Suggestion)`
   gap: 13px;
 
   padding: 2px 20px;
-  border-radius: 50px;
+  border-radius: 40px;
   text-decoration: none;
   white-space: nowrap;
 

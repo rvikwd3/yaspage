@@ -19,25 +19,6 @@ const fadeOut = keyframes`
   from { opacity: ${backgroundConfig.opacity}; } to { opacity: 0; }
 `
 
-/*
-* <img> tag for background
-*/
-const BackgroundImg = styled.img`
-  pointer-events: none;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-
-  object-fit: cover;
-  opacity: ${backgroundConfig.opacity};
-
-  visibility: ${ props => props.isImgLoaded ? 'visible' : 'hidden' };
-
-  /* Animation time should be same as visibility transition time */
-  animation: ${ props => props.isImgLoaded ? fadeIn : fadeOut } ${backgroundConfig.animationDuration} ${backgroundConfig.animationCurve};
-  transition: visibility ${backgroundConfig.animationDuration} ${backgroundConfig.animationCurve};
-`
 const BackgroundDiv = styled.div`
   display: inline-block;
   overflow: hidden;
@@ -47,6 +28,8 @@ const BackgroundDiv = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+
+  opacity: 0.85;
 
   object-fit: cover;
 
@@ -66,11 +49,6 @@ const Background = ({ highResUrl, lowResUrl }) => {
         src={highResUrl}
         placeholder={lowResUrl}
       />
-      {/* <BackgroundImg
-        src={url}
-        isImgLoaded={isImgLoaded}
-        onLoad={() => setIsImgLoaded(true)}
-      /> */}
     </BackgroundDiv>
   )
 }

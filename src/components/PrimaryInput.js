@@ -1,18 +1,36 @@
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
+const highlightOnEmptyVariant = {
+  initial: {
+    backgroundColor: 'rgba(255, 255, 255, 0)',
+  },
+  animate: {
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    transition: {
+      delay: 0.4,
+      duration: 0.2,
+    }
+  }
+}
 
 const PrimaryInput = ({ className, textColor, value }) => {
 
   return (
-    <span className={className}>{value}</span>
+    <motion.span className={className}
+      variants={highlightOnEmptyVariant}
+      initial="initial"
+      animate={value ? "initial" : "animate"}
+    >
+      {value}
+    </motion.span>
   )
 }
 
 const PrimaryInput_Styled = styled(PrimaryInput)`
   width: 100%;
+  min-height: 100px;
   text-align: center;
-  border: 0;
-  outline: 0;
 
   white-space: pre;
 

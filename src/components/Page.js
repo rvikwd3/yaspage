@@ -1,9 +1,29 @@
-import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { useState } from "react"
 
 import interfaceKeyEventHandler from "../utils/interfaceKeyEventHandler"
 
 import InterfaceContainer from "./InterfaceContainer"
 import LandingContainer from "./LandingContainer"
+
+const pageVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+      ease: 'easeOut'
+    }
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.2,
+    }
+  }
+}
 
 /*
 *   On non-control keydown:
@@ -16,25 +36,36 @@ const Page = () => {
   const [pageToShow, setPageToShow] = useState('LANDING')
   const [interfaceInput, setInterfaceInput] = useState('')
 
-  // get interface container
-  const getInterfacePage = (props) => {
-    return <InterfaceContainer
-      {...props}
-    />
-  }
-
-  // get landing container
-  const getLandingPage = (props) => {
-    return <LandingContainer
-      {...props}
-    />
-  }
-
   return (
     <div>
-      {pageToShow === 'LANDING' && getLandingPage({setPageToShow, setInterfaceInput})}
-      {pageToShow === 'INTERFACE' && getInterfacePage({setPageToShow, interfaceInput, setInterfaceInput})}
-    </div>
+      {pageToShow === 'LANDING'
+        && (<motion.div
+          key="LandingContainerKey"
+          variants={pageVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <LandingContainer
+            setPageToShow={setPageToShow}
+            setInterfaceInput={setInterfaceInput}
+          />
+        </motion.div>
+        )}
+      {pageToShow === 'INTERFACE'
+        && (<motion.div
+          key="InterfaceContainerKey"
+          variants={pageVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <InterfaceContainer
+            setPageToShow={setPageToShow}
+            interfaceInput={interfaceInput}
+            setInterfaceInput={setInterfaceInput}
+          />
+        </motion.div>
+        )}
+    </div >
   )
 }
 

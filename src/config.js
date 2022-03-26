@@ -7,18 +7,18 @@ const CONFIG = {
   * - 'gradient-dark'
   * - 'dark'
   */
-  theme: 'unsplash',
+  // theme: 'unsplash',
 
   /*
   * Open triggered queries in a new tab
   */
-  queryNewTab: false,
+  // queryNewTab: false,
 
   /*
   * The delimiter between a command key and your search query. For example,
   * to search GitHub for tilde, you'd type "!gh tilde".
   */
-  querySearchDelimiter: ' ',
+  // querySearchDelimiter: ' ',
 
   /*
   * Max number of suggestions that will be shown
