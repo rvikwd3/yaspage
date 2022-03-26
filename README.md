@@ -13,3 +13,8 @@
         </tr>
     </tbody>
 </table>
+
+### Extensibility
+As with Tilde, yaspage is meant to be customizable
+* Add default commands in the <a href="https://github.com/rvikwd3/yaspage/blob/main/src/commands.js">commands.js</a> file
+* Add default default suggestions in  the <a href="https://github.com/rvikwd3/yaspage/blob/main/src/suggestionDefaults.js">suggestionDefaults.js</a> file
