@@ -1,54 +1,14 @@
-import { motion } from 'framer-motion'
 import styled, { css } from 'styled-components'
 import StyledIcon from './Icon'
 
-const suggestionVariants = {
-  hidden: {
-    opacity: 0,
-    y: '-8',
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.08,
-      duration: 0.1,
-      ease: 'easeOut',
-    }
-  },
-  whileHover: {
-    transition: {
-      type: 'spring',
-      bounce: 0,
-      duration: 0.1,
-    },
-    scale: 1.06,
-  },
-  whileTap: {
-    scale: 0.9,
-    transition: {
-      type: 'spring',
-      bounce: 0,
-      duration: 0.1,
-    },
-  },
-}
-
-const Suggestion = ({ className, suggestion, key }) => {
+const Suggestion = ({ className, suggestion }) => {
   return (
-    <motion.div
-      variants={suggestionVariants}
-      key={key}
-      whileHover="whileHover"
-      whileTap="whileTap"
-      initial="hidden"
-      animate="visible"
-    >
+    <div key={suggestion.id}>
       <a href={suggestion.url} className={className}>
         {suggestion.iconUrl && <StyledIcon src={suggestion.iconUrl} />}
         <p>{suggestion.content}</p>
       </a>
-    </motion.div>
+    </div>
   )
 }
 
