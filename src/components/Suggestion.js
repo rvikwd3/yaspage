@@ -32,15 +32,6 @@ const suggestionVariants = {
       duration: 0.1,
     },
   },
-  exit: {
-    opacity: 0,
-    y: 8,
-    transition: {
-      delay: 0.1,
-      duration: 0.8,
-      ease: 'easeOut',
-    }
-  }
 }
 
 const Suggestion = ({ className, suggestion, key }) => {
@@ -52,7 +43,6 @@ const Suggestion = ({ className, suggestion, key }) => {
       whileTap="whileTap"
       initial="hidden"
       animate="visible"
-      exit="exit"
     >
       <a href={suggestion.url} className={className}>
         {suggestion.iconUrl && <StyledIcon src={suggestion.iconUrl} />}

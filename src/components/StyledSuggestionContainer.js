@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { motion, AnimatePresence } from 'framer-motion'
 
 import CONFIG from '../config'
 
@@ -10,31 +9,6 @@ import useKeydownCatcher from '../hooks/useKeydownCatcher'
 import suggestionsKeyEventHandler from '../utils/suggestionsKeyEventHandler'
 import buildAutocompleteSuggestions from '../utils/buildAutocompleteSuggestions'
 import StyledSuggestion from './Suggestion'
-
-const suggestionVariants = {
-  hidden: {
-    opacity: 0,
-    y: '-10',
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.08,
-      duration: 0.1,
-      ease: 'easeOut',
-    }
-  },
-  exit: {
-    opacity: 0,
-    y: 10,
-    transition: {
-      delay: 0.1,
-      duration: 0.1,
-      ease: 'easeOut',
-    }
-  }
-}
 
 // get interface input text
 // show suggestions
@@ -154,24 +128,16 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
     }
   }, [keydownEvent])
 
-  
+
   return (
-      <motion.div className={className} key={primaryInput}
-        exit={{
-          y: '-8',
-          opacity: 0,
-          transition: {
-            duration: 0.8
-          }
-        }}
-      >
-        {suggestionsToShow.slice(0, CONFIG.suggestionLimit).map(suggestion => (
-          <StyledSuggestion
-            key={suggestion.id}
-            suggestion={suggestion}
-          />
-        ))}
-      </motion.div>
+    <div className={className} key={primaryInput}>
+      {suggestionsToShow.slice(0, CONFIG.suggestionLimit).map(suggestion => (
+        <StyledSuggestion
+          key={suggestion.id}
+          suggestion={suggestion}
+        />
+      ))}
+    </div>
   )
 }
 
