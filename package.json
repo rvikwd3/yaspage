@@ -4,8 +4,8 @@
   "description": "startpage similar to tilde2022",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode=production",
-    "start": "webpack server --mode=development"
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack serve --open --config webpack.dev.js"
   },
   "author": "Ravikiran Kawade",
   "license": "MIT",
@@ -16,6 +16,7 @@
     "framer-motion": "^6.2.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-transition-group": "^4.4.2",
     "regenerator-runtime": "^0.13.9",
     "styled-components": "^5.3.3"
   },
@@ -30,6 +31,7 @@
     "terser-webpack-plugin": "^5.3.1",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
+    "webpack-dev-server": "^4.7.4",
+    "webpack-merge": "^5.8.0"
   }
 }

@@ -37,17 +37,17 @@ const suggestionVariants = {
     y: 8,
     transition: {
       delay: 0.1,
-      duration: 0.1,
+      duration: 0.8,
       ease: 'easeOut',
     }
   }
 }
 
-const Suggestion = ({ className, suggestion }) => {
+const Suggestion = ({ className, suggestion, key }) => {
   return (
     <motion.div
       variants={suggestionVariants}
-      key={suggestion.id}
+      key={key}
       whileHover="whileHover"
       whileTap="whileTap"
       initial="hidden"

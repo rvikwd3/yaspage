@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { AnimatePresence } from 'framer-motion'
 
 import useKeydownCatcher from '../hooks/useKeydownCatcher'
 
@@ -43,10 +44,12 @@ const InterfaceContainer = ({ setPageToShow, interfaceInput, setInterfaceInput }
         value={interfaceInput}
         textColor={primaryTextColor}
       />
+    <AnimatePresence exitBeforeEnter>
       <StyledSuggestionContainer
         primaryInput={interfaceInput}
         setPrimaryTextColor={setPrimaryTextColor}
       />
+    </AnimatePresence >
     </InterfaceContainer_Styled>
   )
 }

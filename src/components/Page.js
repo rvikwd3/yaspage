@@ -1,29 +1,7 @@
-import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
-
-import interfaceKeyEventHandler from "../utils/interfaceKeyEventHandler"
 
 import InterfaceContainer from "./InterfaceContainer"
 import LandingContainer from "./LandingContainer"
-
-const pageVariants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.2,
-      ease: 'easeOut'
-    }
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 0.2,
-    }
-  }
-}
 
 /*
 *   On non-control keydown:
@@ -39,31 +17,17 @@ const Page = () => {
   return (
     <div>
       {pageToShow === 'LANDING'
-        && (<motion.div
-          key="LandingContainerKey"
-          variants={pageVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <LandingContainer
-            setPageToShow={setPageToShow}
-            setInterfaceInput={setInterfaceInput}
-          />
-        </motion.div>
-        )}
+        && <LandingContainer
+          setPageToShow={setPageToShow}
+          setInterfaceInput={setInterfaceInput}
+        />
+      }
       {pageToShow === 'INTERFACE'
-        && (<motion.div
-          key="InterfaceContainerKey"
-          variants={pageVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <InterfaceContainer
-            setPageToShow={setPageToShow}
-            interfaceInput={interfaceInput}
-            setInterfaceInput={setInterfaceInput}
-          />
-        </motion.div>
+        && (<InterfaceContainer
+          setPageToShow={setPageToShow}
+          interfaceInput={interfaceInput}
+          setInterfaceInput={setInterfaceInput}
+        />
         )}
     </div >
   )

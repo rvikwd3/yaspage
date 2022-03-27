@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 const Dotenv = require('dotenv-webpack')
-const TerserPlugin = require('terser-webpack-plugin')
 
 const config = {
   entry: "./src/index.js",
@@ -9,13 +8,6 @@ const config = {
     path: path.resolve(__dirname, 'build'),
     filename: 'main.js'
   },
-  devServer: {
-    static: path.resolve(__dirname, 'build'),
-    compress: true,
-    port: 3000,
-    historyApiFallback: true,
-  },
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -35,10 +27,6 @@ const config = {
         type: 'asset/resource'
       }
     ],
-  },
-  optimization: {
-    minimize: true,
-    minimizer: [new TerserPlugin()],
   },
   plugins: [
     new webpack.ProvidePlugin({

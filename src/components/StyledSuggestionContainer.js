@@ -78,7 +78,7 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
         iconUrl: matchingCommand.iconUrl,
         hex: matchingCommand.hex,
         url: matchingCommand.url,
-        id: `${matchingCommand.name}_${matchingCommand.url}`
+        id: `${matchingCommand.name}_${primaryInput}`
       }
       suggestions = suggestions.concat(commandSuggestion)
     }
@@ -91,7 +91,7 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
         suggestions = suggestions.concat({
           content: suggestion.name,
           url: suggestion.url,
-          id: `${suggestion.name}_${suggestion.url}`
+          id: `${suggestion.name}_${primaryInput}`
         });
         return suggestions;
       })
@@ -106,7 +106,7 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
     console.log('suggestionsToShow before appending async suggestions: ', prevSuggestions);
     return [  // Set calculated suggestions
       ...prevSuggestions,
-      ...buildAutocompleteSuggestions(res[1], prevSuggestions)
+      ...buildAutocompleteSuggestions(res[1], prevSuggestions, primaryInput)
     ]
   }
 
@@ -115,7 +115,7 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
   */
   useEffect(() => {
     // set non-async suggestions
-    setSuggestionsToShow(prevState => getSuggestionsForInput(primaryInput))
+    setSuggestionsToShow(getSuggestionsForInput(primaryInput))
 
     // set async suggestions to show
     let autocompleteScript = null
@@ -154,18 +154,24 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
     }
   }, [keydownEvent])
 
-  if (suggestionsToShow.length === 0) return null
+  
   return (
-    <div className={className}>
-      <AnimatePresence exitBeforeEnter>
+      <motion.div className={className} key={primaryInput}
+        exit={{
+          y: '-8',
+          opacity: 0,
+          transition: {
+            duration: 0.8
+          }
+        }}
+      >
         {suggestionsToShow.slice(0, CONFIG.suggestionLimit).map(suggestion => (
           <StyledSuggestion
             key={suggestion.id}
             suggestion={suggestion}
           />
         ))}
-      </AnimatePresence >
-    </div>
+      </motion.div>
   )
 }
 
