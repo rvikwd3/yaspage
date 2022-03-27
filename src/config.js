@@ -24,6 +24,11 @@ const CONFIG = {
   * Max number of suggestions that will be shown
   */
   suggestionLimit: 6,
+
+  /*
+  * Default Unsplash URL in case of no localStorage
+  */
+  defaultBackgroundUrl: 'https://images.unsplash.com/photo-1648138754721-10ce6a0224a3?auto=format&fit=crop&w=1920&q=80',
 }
 
 export default CONFIG

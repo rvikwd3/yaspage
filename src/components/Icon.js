@@ -6,7 +6,8 @@ const Icon = ({ src }) => {
 
   const style = {
     width: '32px',
-    height: '32px'
+    height: '32px',
+    objectFit: 'scale-down'
   }
 
   if (error) {

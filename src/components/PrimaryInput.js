@@ -3,10 +3,10 @@ import { motion } from 'framer-motion'
 
 const highlightOnEmptyVariant = {
   initial: {
-    backgroundColor: 'rgba(255, 255, 255, 0)',
+    backgroundColor: 'rgba(41, 41, 41, 0)',
   },
   animate: {
-    backgroundColor: 'rgba(41, 41, 41, 0.1)',
+    backgroundColor: 'rgba(41, 41, 41, 0.2)',
     transition: {
       delay: 0.8,
       duration: 0.2,

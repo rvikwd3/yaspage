@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import CONFIG from '../config'
 
@@ -10,6 +11,30 @@ import suggestionsKeyEventHandler from '../utils/suggestionsKeyEventHandler'
 import buildAutocompleteSuggestions from '../utils/buildAutocompleteSuggestions'
 import StyledSuggestion from './Suggestion'
 
+const suggestionVariants = {
+  hidden: {
+    opacity: 0,
+    y: '-10',
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.08,
+      duration: 0.1,
+      ease: 'easeOut',
+    }
+  },
+  exit: {
+    opacity: 0,
+    y: 10,
+    transition: {
+      delay: 0.1,
+      duration: 0.1,
+      ease: 'easeOut',
+    }
+  }
+}
 
 // get interface input text
 // show suggestions
@@ -132,16 +157,14 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
   if (suggestionsToShow.length === 0) return null
   return (
     <div className={className}>
-      {suggestionsToShow.slice(0,CONFIG.suggestionLimit).map(suggestion => (
-        <StyledSuggestion
-          key={suggestion.id}
-          content={suggestion.content}
-          iconUrl={suggestion.iconUrl}
-          url={suggestion.url}
-          highlight={suggestion.highlight}
-          hex={suggestion.hex || ''}  // if hex isn't in the suggestion give falsey empty string
-        />
-      ))}
+      <AnimatePresence exitBeforeEnter>
+        {suggestionsToShow.slice(0, CONFIG.suggestionLimit).map(suggestion => (
+          <StyledSuggestion
+            key={suggestion.id}
+            suggestion={suggestion}
+          />
+        ))}
+      </AnimatePresence >
     </div>
   )
 }

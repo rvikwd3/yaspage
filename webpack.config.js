@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const Dotenv = require('dotenv-webpack')
+const TerserPlugin = require('terser-webpack-plugin')
 
 const config = {
   entry: "./src/index.js",
@@ -34,6 +35,10 @@ const config = {
         type: 'asset/resource'
       }
     ],
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
   plugins: [
     new webpack.ProvidePlugin({

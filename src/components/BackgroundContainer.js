@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import CONFIG from '../config'
 import { getUnsplashBackground } from '../utils/getUnsplashBackground'
 
 import Background from './Background'
@@ -14,6 +15,13 @@ const BackgroundContainer = () => {
   const [apiPending, setApiPending] = useState(true)
 
   useEffect(async () => {
+    if (!window.localStorage.getItem('yaspage')){
+      window.localStorage.setItem('yaspage', JSON.stringify({
+        localBackgroundUrl: CONFIG.defaultBackgroundUrl,
+        lastUnsplashApiCallDate: new Date()
+      }))
+    }
+
     const { localBackgroundUrl, lastUnsplashApiCallDate } = JSON.parse(window.localStorage.getItem('yaspage'))
 
     const secDiff = secElapsedFromNow(lastUnsplashApiCallDate)
