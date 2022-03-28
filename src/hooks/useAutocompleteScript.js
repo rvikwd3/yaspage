@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
 const useAutocompleteScript = ({ primaryInput, componentCallback }) => {
   let url = ''
@@ -6,23 +6,22 @@ const useAutocompleteScript = ({ primaryInput, componentCallback }) => {
     url = process.env.DDG_AUTOCOMPLETE_URL + primaryInput
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = url;
-    script.defer = true;
+    const script = document.createElement('script')
+    script.src = url
+    script.defer = true
 
-    document.head.appendChild(script);
+    document.head.appendChild(script)
 
-    if (componentCallback && typeof window != "undefined") {   // in case SSR server side rendering
+    if (componentCallback && typeof window !== 'undefined') {   // in case SSR server side rendering
       window.autocompleteCallback = (res) => {
-        console.log(`%cCALLBACK`, "color: lightgreen;");
         componentCallback(res)
       }
     }
 
     return () => {
-      document.head.removeChild(script);
+      document.head.removeChild(script)
     }
-  }, [primaryInput]);
-};
+  }, [primaryInput])
+}
 
-export default useAutocompleteScript;
+export default useAutocompleteScript

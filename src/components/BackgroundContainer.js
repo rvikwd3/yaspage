@@ -14,7 +14,7 @@ const BackgroundContainer = () => {
   const [lowResUrl, setLowResUrl] = useState('')
   const [apiPending, setApiPending] = useState(true)
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!window.localStorage.getItem('yaspage')){
       window.localStorage.setItem('yaspage', JSON.stringify({
         localBackgroundUrl: CONFIG.defaultBackgroundUrl,
@@ -30,9 +30,9 @@ const BackgroundContainer = () => {
       setHighResUrl(localBackgroundUrl)
       setApiPending(false)
     } else {
-      const apiBackgroundUrls = await getUnsplashBackground()
-      const apiHighResUrl = apiBackgroundUrls.raw + '&q=85&w=1920'
-      const apiLowResUrl = apiBackgroundUrls.small
+      const apiBackgroundUrls = async () => await getUnsplashBackground()
+      const apiHighResUrl = apiBackgroundUrls().raw + '&q=85&w=1920'
+      const apiLowResUrl = apiBackgroundUrls().small
 
       setHighResUrl(apiHighResUrl)
       setLowResUrl(apiLowResUrl)

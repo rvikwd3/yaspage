@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 const formatMinutes = (minutes) => {
@@ -15,12 +15,12 @@ const formatHours = (hours) => {
 
 const Clock = ({ className }) => {
   const [time, setTime] = useState(new Date())
-  
+
   useEffect( () => {
     let secTimer = setInterval( () => {
       setTime(new Date())
     }, 1000)
-  
+
     return () => clearInterval(secTimer)
   }, [])
 

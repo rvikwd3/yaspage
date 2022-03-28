@@ -12,7 +12,7 @@ import StyledSuggestion from './Suggestion'
 
 // get interface input text
 // show suggestions
-//    suggestion order: 
+//    suggestion order:
 //      1. commands
 //      2. search suggestions
 const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) => {
@@ -22,15 +22,15 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
   const keydownEvent = useKeydownCatcher()
 
   const callAutocompleteScript = (componentCallback) => {
-    const script = document.createElement('script');
+    const script = document.createElement('script')
     const url = process.env.DDG_AUTOCOMPLETE_URL + primaryInput
     script.src = url
-    script.defer = true;
-    document.head.appendChild(script);
+    script.defer = true
+    document.head.appendChild(script)
 
-    if (componentCallback && typeof window != "undefined") {   // in case SSR server side rendering
+    if (componentCallback && typeof window !== 'undefined') {   // in case SSR server side rendering
       window.autocompleteCallback = (res) => {
-        console.log(`%cCALLBACK`, "color: lightgreen;");
+        console.log('%cCALLBACK', 'color: lightgreen;')
         componentCallback(res)
       }
     }
@@ -52,7 +52,7 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
         iconUrl: matchingCommand.iconUrl,
         hex: matchingCommand.hex,
         url: matchingCommand.url,
-        id: `${matchingCommand.name}_${primaryInput}`
+        id: `${matchingCommand.name}_${primaryInput}_${new Date().toISOString()}`
       }
       suggestions = suggestions.concat(commandSuggestion)
     }
@@ -65,9 +65,9 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
         suggestions = suggestions.concat({
           content: suggestion.name,
           url: suggestion.url,
-          id: `${suggestion.name}_${primaryInput}`
-        });
-        return suggestions;
+          id: `${suggestion.name}_${primaryInput}_${new Date().toISOString()}`
+        })
+        return suggestions
       })
     }
     return suggestions
@@ -77,9 +77,8 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
   * Get autocomplete suggestions
   */
   const getAutocompleteSuggestionsForInput = (res, prevSuggestions) => {
-    console.log('suggestionsToShow before appending async suggestions: ', prevSuggestions);
+    console.log('suggestionsToShow before appending async suggestions: ', prevSuggestions)
     return [  // Set calculated suggestions
-      ...prevSuggestions,
       ...buildAutocompleteSuggestions(res[1], prevSuggestions, primaryInput)
     ]
   }
@@ -88,20 +87,27 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
   * Update autocomplete suggestions each time primary input changes
   */
   useEffect(() => {
-    // set non-async suggestions
-    setSuggestionsToShow(getSuggestionsForInput(primaryInput))
 
-    // set async suggestions to show
+    // set protectors from race condition on async calls
     let autocompleteScript = null
     let active = true
 
+    // set both nonAsync and async suggestions
     if (primaryInput.length > 1) {
       autocompleteScript = callAutocompleteScript((scriptResponse) => {
         if (active) {
-          console.log(`useEffect for %c'${primaryInput}' %cisActive?: %c${active}`, "color: DeepPink;", "", "color: Gold;");
-          setSuggestionsToShow(prevState => getAutocompleteSuggestionsForInput(scriptResponse, prevState))
+          // console.log(`useEffect for %c'${primaryInput}' %cisActive?: %c${active}`, "color: DeepPink;", "", "color: Gold;");
+          const nonAsyncSuggestions = getSuggestionsForInput(primaryInput)
+          let suggestionsToSet = [
+            ...nonAsyncSuggestions,  // non-async suggestions
+            ...getAutocompleteSuggestionsForInput(scriptResponse, nonAsyncSuggestions) // async suggestions
+          ]
+          console.log(`%cSuggestions to set: %c${JSON.stringify(suggestionsToSet.map(s => s.content))}`, 'color: hotpink;')
+          setSuggestionsToShow(suggestionsToSet)
         }
       })
+    } else {
+      setSuggestionsToShow(getSuggestionsForInput(primaryInput))
     }
 
     // reset highlightIndex
@@ -113,10 +119,12 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
       ? setPrimaryTextColor(matchingCommand.hex.primary)
       : setPrimaryTextColor('white')
 
+
     return () => {
-      active = false
+      active = false    // avoid async race condition on setSuggestionsToShow
       if (autocompleteScript)
         document.head.removeChild(autocompleteScript)
+      setSuggestionsToShow([])
     }
   }, [primaryInput])
 

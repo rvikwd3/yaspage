@@ -4,8 +4,8 @@ const useKeydownCatcher = () => {
   const [keydownEvent, setKeydownEvent] = useState(null)
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      setKeydownEvent(e)
+    const handleKeyDown = (event) => {
+      setKeydownEvent(event)
     }
 
     document.addEventListener('keydown', handleKeyDown)

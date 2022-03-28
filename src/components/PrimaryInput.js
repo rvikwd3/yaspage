@@ -14,15 +14,16 @@ const highlightOnEmptyVariant = {
   }
 }
 
-const PrimaryInput = ({ className, textColor, value }) => {
+// eslint-disable-next-line no-unused-vars
+const PrimaryInput = ({ className, textColor, interfaceInput }) => {
 
   return (
     <motion.span className={className}
       variants={highlightOnEmptyVariant}
       initial="initial"
-      animate={value ? "initial" : "animate"}
+      animate={interfaceInput ? 'initial' : 'animate'}
     >
-      {value}
+      {interfaceInput}
     </motion.span>
   )
 }

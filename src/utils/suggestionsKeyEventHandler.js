@@ -1,5 +1,5 @@
-import { googleSearchBuildQuery } from "./googleSearchBuildQuery"
-import commands from "../commands"
+import { googleSearchBuildQuery } from './googleSearchBuildQuery'
+import commands from '../commands'
 
 const suggestionsKeyEventHandler = (event, input, hlIndex, setHlIndex, suggestions, setSuggestions) => {
   if (!event) return null

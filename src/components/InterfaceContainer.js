@@ -22,9 +22,10 @@ const InterfaceContainer_Styled = styled.div`
   width: 100%;
 `
 
-const InterfaceContainer = ({ setPageToShow, interfaceInput, setInterfaceInput }) => {
+const InterfaceContainer = ({ setPageToShow, initialInput }) => {
   const keydownEvent = useKeydownCatcher()
   const [primaryTextColor, setPrimaryTextColor] = useState('white')
+  const [interfaceInput, setInterfaceInput] = useState(initialInput)
 
   useEffect(() => {
     if (keydownEvent) {
@@ -40,7 +41,7 @@ const InterfaceContainer = ({ setPageToShow, interfaceInput, setInterfaceInput }
       key="InterfaceContainer_Styled"
     >
       <PrimaryInput_Styled
-        value={interfaceInput}
+        interfaceInput={interfaceInput}
         textColor={primaryTextColor}
       />
       <StyledSuggestionContainer

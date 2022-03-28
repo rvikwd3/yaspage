@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const FormattedDate = ({ className }) => {
   const [date, setDate] = useState(new Date())
-  
+
   useEffect( () => {
     let dayTimer = setInterval( () => {
       setDate(new Date())

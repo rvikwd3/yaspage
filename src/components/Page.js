@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useState } from 'react'
 
-import InterfaceContainer from "./InterfaceContainer"
-import LandingContainer from "./LandingContainer"
+import InterfaceContainer from './InterfaceContainer'
+import LandingContainer from './LandingContainer'
 
 /*
 *   On non-control keydown:
@@ -12,23 +12,23 @@ import LandingContainer from "./LandingContainer"
 */
 const Page = () => {
   const [pageToShow, setPageToShow] = useState('LANDING')
-  const [interfaceInput, setInterfaceInput] = useState('')
-
+  const [initialInput, setInitialInput] = useState('')
   return (
     <div>
       {pageToShow === 'LANDING'
-        && <LandingContainer
+        && (<LandingContainer
+          pageToShow={pageToShow}
           setPageToShow={setPageToShow}
-          setInterfaceInput={setInterfaceInput}
-        />
+          setInitialInput={setInitialInput}
+        />)
       }
       {pageToShow === 'INTERFACE'
         && (<InterfaceContainer
           setPageToShow={setPageToShow}
-          interfaceInput={interfaceInput}
-          setInterfaceInput={setInterfaceInput}
+          initialInput={initialInput}
         />
-        )}
+        )
+      }
     </div >
   )
 }
