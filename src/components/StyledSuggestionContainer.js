@@ -15,7 +15,7 @@ import StyledSuggestion from './Suggestion'
 //    suggestion order:
 //      1. commands
 //      2. search suggestions
-const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) => {
+const SuggestionContainer = ({ className, primaryInput }) => {
 
   const [suggestionsToShow, setSuggestionsToShow] = useState([])
   const [highlightIndex, setHighlightIndex] = useState(0)
@@ -84,6 +84,7 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
 
   /*
   * Update autocomplete suggestions each time primary input changes
+  * Reset highlight position on primary input change
   */
   useEffect(() => {
 
@@ -111,13 +112,6 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
 
     // reset highlightIndex
     setHighlightIndex(0)
-
-    // if a matchingCommand exists, set primary input text to its hex color
-    const matchingCommand = commands.find(command => command.key.includes(primaryInput))
-    matchingCommand
-      ? setPrimaryTextColor(matchingCommand.hex.primary)
-      : setPrimaryTextColor('white')
-
 
     return () => {
       active = false    // avoid async race condition on setSuggestionsToShow

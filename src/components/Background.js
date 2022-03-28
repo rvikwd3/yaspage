@@ -17,10 +17,6 @@ const BackgroundDiv = styled.div`
   z-index: -1;
 `
 
-/*
-* on <img onLoad> load set state to true
-* on true state, visibility transitions to visible
-*/
 const Background = ({ highResUrl, lowResUrl }) => {
   return (
     <BackgroundDiv>

@@ -4,10 +4,10 @@ import { getUnsplashBackground } from '../utils/getUnsplashBackground'
 
 import Background from './Background'
 
-// if last api call was under half an hour, return saved image url
+// if last api call was under 10 min, return saved image url
 // else
 // call api and get image url
-// save image url as localBackgroundUrl
+// save image url as localHigh/LowBackgroundUrl
 // save current date as lastUnsplashApiCallDate
 const BackgroundContainer = () => {
   const [highResUrl, setHighResUrl] = useState('')

@@ -1,12 +1,17 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
+import commands from '../commands'
+
 const highlightOnEmptyVariant = {
   initial: {
-    backgroundColor: 'rgba(41, 41, 41, 0)',
+    opacity: 0,
+    transition: {
+      duration: 0.05,
+    }
   },
   animate: {
-    backgroundColor: 'rgba(41, 41, 41, 0.2)',
+    opacity: 1,
     transition: {
       delay: 0.8,
       duration: 0.2,
@@ -14,34 +19,63 @@ const highlightOnEmptyVariant = {
   }
 }
 
+/* Styled component requires the textColor prop, eslint throws error on it not being used in functional component */
 // eslint-disable-next-line no-unused-vars
-const PrimaryInput = ({ className, textColor, interfaceInput }) => {
+const PrimaryInput = ({ className, interfaceInput }) => {
 
   return (
-    <motion.span className={className}
-      variants={highlightOnEmptyVariant}
-      initial="initial"
-      animate={interfaceInput ? 'initial' : 'animate'}
+    <motion.div
+      className={className}
     >
-      {interfaceInput}
-    </motion.span>
+      <span
+        style={{
+          position: 'absolute',
+          zIndex: 2,
+          whiteSpace: 'pre',
+        }}
+      >
+        {interfaceInput}
+      </span>
+      <motion.span
+        style={{
+          position: 'absolute',
+          color: 'white',
+          zIndex: 1,
+        }}
+        variants={highlightOnEmptyVariant}
+        initial="initial"
+        animate={interfaceInput ? 'initial' : 'animate'}
+        // animate="animate"
+      >↪</motion.span>
+    </motion.div >
   )
+}
+
+const commandTextColor = (input) => {
+  // if a matchingCommand exists, set primary input text to its hex color
+  const matchingCommand = commands.find(command => command.key.includes(input))
+  return matchingCommand
+    ? matchingCommand.hex.primary
+    : 'white'
 }
 
 const PrimaryInput_Styled = styled(PrimaryInput)`
   width: 100%;
-  min-height: 100px;
+  min-height: 110px;
   text-align: center;
-
-  white-space: pre;
 
   // grid item
   grid-row: 1;
 
+  // both input and hover box should be centered
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   // font
   font-weight: 700;
   font-size: clamp(60px, 4vw, 80px); // scale font size with width
-  color: ${props => props.textColor};
+  color: ${props => commandTextColor(props.interfaceInput)};
 
   text-shadow: 2px 5px 10px rgba(0,0,0,0.5);
 `

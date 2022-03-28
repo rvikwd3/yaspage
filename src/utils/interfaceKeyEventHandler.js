@@ -21,6 +21,7 @@ const interfaceKeyEventHandler = (event, input, setInput, setPage) => {
         'non-control': () => setInput(input.concat(event.key)),
         'Backspace': () => setPage('LANDING'),
         'Escape': () => setPage('LANDING'),
+        'Enter': () => window.location.href = 'https://www.google.com',
       }
     }
   }

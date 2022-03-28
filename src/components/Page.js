@@ -7,7 +7,7 @@ import LandingContainer from './LandingContainer'
 *   On non-control keydown:
 *     Hide Landing Container
 *     Show Interface Container
-*     Add key to primaryInput
+*     Add key to interface input
 *   When InterfaceContainer signals showLanding, show LandingContainer
 */
 const Page = () => {
