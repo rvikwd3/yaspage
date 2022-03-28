@@ -77,7 +77,6 @@ const SuggestionContainer = ({ className, primaryInput, setPrimaryTextColor }) =
   * Get autocomplete suggestions
   */
   const getAutocompleteSuggestionsForInput = (res, prevSuggestions) => {
-    console.log('suggestionsToShow before appending async suggestions: ', prevSuggestions)
     return [  // Set calculated suggestions
       ...buildAutocompleteSuggestions(res[1], prevSuggestions, primaryInput)
     ]

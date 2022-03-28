@@ -13,7 +13,7 @@ const suggestionsKeyEventHandler = (event, input, hlIndex, setHlIndex, suggestio
     let incomingSuggestion = { ...localSuggestionsCopy[newHlIndex - 1], highlight: true }   // modifying shallow copy of incoming suggestion
     localSuggestionsCopy[oldHlIndex - 1] = outgoingSuggestion   // mutating shallow copy of outgoing suggestion
     localSuggestionsCopy[newHlIndex - 1] = incomingSuggestion   // mutating shallow copy of incoming suggestion
-    setSuggestions(localSuggestionsCopy)    // replace state with mutated shallow copy of state
+    setSuggestions([...localSuggestionsCopy])    // replace state with mutated shallow copy of state
   }
 
   const suggestionCmds = {

@@ -14,40 +14,54 @@ const BackgroundContainer = () => {
   const [lowResUrl, setLowResUrl] = useState('')
   const [apiPending, setApiPending] = useState(true)
 
+  // get image urls from Unsplash API and set them in localStorage
+  const getImageUrlsAndSetLocalStorage = async () => {
+    const apiBackgroundUrls = await getUnsplashBackground()
+    const apiHighResUrl = apiBackgroundUrls.raw + '&q=85&w=1920'
+    const apiLowResUrl = apiBackgroundUrls.small
+
+    window.localStorage.setItem('yaspage', JSON.stringify({
+      localHighBackgroundUrl: apiHighResUrl,
+      localLowBackgroundUrl: apiLowResUrl,
+      lastUnsplashApiCallDate: new Date()
+    }))
+
+    return {
+      apiHighResUrl,
+      apiLowResUrl
+    }
+  }
+
   useEffect(() => {
-    if (!window.localStorage.getItem('yaspage')){
+    // if no localStorage 'yaspage', set localStorage with defaults
+    if (!window.localStorage.getItem('yaspage')) {
       window.localStorage.setItem('yaspage', JSON.stringify({
-        localBackgroundUrl: CONFIG.defaultBackgroundUrl,
+        localHighBackgroundUrl: CONFIG.defaultHighResBackgroundUrl,
+        localLowBackgroundUrl: CONFIG.defaultLowResBackgroundUrl,
         lastUnsplashApiCallDate: new Date()
       }))
     }
 
-    const { localBackgroundUrl, lastUnsplashApiCallDate } = JSON.parse(window.localStorage.getItem('yaspage'))
+    // get localStorage 'yaspage'
+    const { localHighBackgroundUrl, localLowBackgroundUrl, lastUnsplashApiCallDate } = JSON.parse(window.localStorage.getItem('yaspage'))
 
     const secDiff = secElapsedFromNow(lastUnsplashApiCallDate)
-
+    // has 10min passed? get a new background, otherwise use local background
     if (secDiff < (10 * 60)) {
-      setHighResUrl(localBackgroundUrl)
+      setHighResUrl(localHighBackgroundUrl)
+      setLowResUrl(localLowBackgroundUrl)
       setApiPending(false)
     } else {
-      const apiBackgroundUrls = async () => await getUnsplashBackground()
-      const apiHighResUrl = apiBackgroundUrls().raw + '&q=85&w=1920'
-      const apiLowResUrl = apiBackgroundUrls().small
-
-      setHighResUrl(apiHighResUrl)
-      setLowResUrl(apiLowResUrl)
-      setApiPending(false)
-
-      window.localStorage.setItem('yaspage', JSON.stringify({
-        localBackgroundUrl: apiHighResUrl,
-        lastUnsplashApiCallDate: new Date()
-      }))
+      getImageUrlsAndSetLocalStorage().then(({ apiHighResUrl, apiLowResUrl }) => {
+        setHighResUrl(apiHighResUrl)
+        setLowResUrl(apiLowResUrl)
+        setApiPending(false)
+      })
     }
-
   }, [])
 
   return (
-    !apiPending && <Background highResUrl={highResUrl} lowResUrl={lowResUrl}/>
+    !apiPending && <Background highResUrl={highResUrl} lowResUrl={lowResUrl} />
   )
 }
 
