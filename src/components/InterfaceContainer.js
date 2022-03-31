@@ -50,12 +50,9 @@ const InterfaceContainer = ({ setPageToShow, initialInput }) => {
       <SwitchTransition>
         <CSSTransition
           key={interfaceInput}
-          addEndListener={(node, done) => { node.addEventListener('transitioned', done, false)}}
           classNames="fade"
-          timeout={300}
+          timeout={280}
           appear={true}
-          onEnter={() => console.log('Enter CSSTransition')}
-          onExit={() => console.log('Exit CSSTransition')}
           unmountOnExit
         >
           {() => <SuggestionContainer_Styled

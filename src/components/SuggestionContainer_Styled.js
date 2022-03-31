@@ -169,7 +169,7 @@ const SuggestionContainer_Styled = styled(SuggestionContainer)`
   &.fade-appear-active,
   &.fade-enter-active,
   &.fade-exit-active {
-    transition: opacity 300ms, transform 300ms cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity 280ms, transform 280ms cubic-bezier(0.25, 1, 0.5, 1);
     transition-delay: 200ms;
   }
 
