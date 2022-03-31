@@ -12,7 +12,7 @@ const BackgroundDiv = styled.div`
   height: 100%;
 
   object-fit: cover;
-  opacity: 0.85;
+  opacity: 0.88;
 
   z-index: -1;
 `

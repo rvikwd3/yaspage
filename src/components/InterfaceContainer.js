@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { CSSTransition } from 'react-transition-group'
 
 import useKeydownCatcher from '../hooks/useKeydownCatcher'
 
 import interfaceKeyEventHandler from '../utils/interfaceKeyEventHandler'
 
 import PrimaryInput_Styled from './PrimaryInput'
-import StyledSuggestionContainer from './StyledSuggestionContainer'
+import SuggestionContainer_Styled from './SuggestionContainer_Styled'
+import { SwitchTransition } from 'react-transition-group'
 
 const InterfaceContainer_Styled = styled.div`
   // grid with two rows: input and suggestions
@@ -28,23 +30,41 @@ const InterfaceContainer = ({ setPageToShow, initialInput }) => {
 
   useEffect(() => {
     if (keydownEvent) {
-      const actionOnKeydown = interfaceKeyEventHandler(keydownEvent, interfaceInput, setInterfaceInput, setPageToShow)
+      const actionOnKeydown = interfaceKeyEventHandler(
+        keydownEvent,
+        interfaceInput,
+        setInterfaceInput,
+        setPageToShow
+      )
       if (actionOnKeydown) {
         actionOnKeydown()
       }
     }
-  }, [keydownEvent])
+  }, [keydownEvent]) // adding interfaceInput as dependency goes into infinite loop of adding key
 
   return (
-    <InterfaceContainer_Styled
-      key="InterfaceContainer_Styled"
-    >
+    <InterfaceContainer_Styled>
       <PrimaryInput_Styled
         interfaceInput={interfaceInput}
       />
-      <StyledSuggestionContainer
-        primaryInput={interfaceInput}
-      />
+      <SwitchTransition>
+        <CSSTransition
+          key={interfaceInput}
+          addEndListener={(node, done) => { node.addEventListener('transitioned', done, false)}}
+          classNames="fade"
+          timeout={300}
+          appear={true}
+          onEnter={() => console.log('Enter CSSTransition')}
+          onExit={() => console.log('Exit CSSTransition')}
+          unmountOnExit
+        >
+          {() => <SuggestionContainer_Styled
+            key={interfaceInput}
+            interfaceInput={interfaceInput}
+            keydownEvent={keydownEvent}
+          />}
+        </CSSTransition>
+      </SwitchTransition>
     </InterfaceContainer_Styled>
   )
 }

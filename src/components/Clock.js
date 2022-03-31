@@ -16,6 +16,8 @@ const formatHours = (hours) => {
 const Clock = ({ className }) => {
   const [time, setTime] = useState(new Date())
 
+  const formattedTime = `${formatHours(time.getHours())}:${formatMinutes(time.getMinutes())}`
+
   useEffect( () => {
     let secTimer = setInterval( () => {
       setTime(new Date())
@@ -26,7 +28,7 @@ const Clock = ({ className }) => {
 
   return (
     <div className={className}>
-      <span>{formatHours(time.getHours())}:{formatMinutes(time.getMinutes())}</span>
+      <span>{formattedTime}</span>
     </div>
   )
 }
@@ -36,6 +38,7 @@ const Clock_Styled = styled(Clock)`
 
   color: white;
   letter-spacing: 20px;
+  text-indent: 20px;
   font-size: clamp(100px, 4vw, 220px);
   font-weight: 800;
 

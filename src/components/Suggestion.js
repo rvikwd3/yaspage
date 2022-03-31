@@ -5,21 +5,21 @@ import StyledIcon from './Icon'
 const suggestionVariants = {
   hidden: {
     opacity: 0,
-    y: '-8',
+    y: '-20',
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.1,
-      duration: 0.1,
+      delay: 0.28,
+      duration: 0.5,
       ease: 'easeOut',
     }
   },
   whileHover: {
     transition: {
       type: 'tween',
-      duration: 0.1,
+      duration: 0.08,
       ease: [0.16, 1, 0.3, 1],
     },
     scale: 1.06,
@@ -31,18 +31,17 @@ const suggestionVariants = {
       bounce: 0,
       duration: 0.1,
     },
-  },
+  }
 }
 
 const Suggestion = ({ className, suggestion }) => {
+
   return (
     <motion.div
       variants={suggestionVariants}
       key={suggestion.id}
       whileHover="whileHover"
       whileTap="whileTap"
-      initial="hidden"
-      animate="visible"
     >
       <a href={suggestion.url} className={className}>
         {suggestion.iconUrl && <StyledIcon src={suggestion.iconUrl} />}
@@ -52,7 +51,7 @@ const Suggestion = ({ className, suggestion }) => {
   )
 }
 
-const StyledSuggestion = styled(Suggestion)`
+const Suggestion_Styled = styled(Suggestion)`
   width: auto;
   height: 38px;
   display: flex;
@@ -84,4 +83,4 @@ const StyledSuggestion = styled(Suggestion)`
 
 `
 
-export default StyledSuggestion
+export default Suggestion_Styled

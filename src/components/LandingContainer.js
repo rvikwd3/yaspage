@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
 
 import useKeydownCatcher from '../hooks/useKeydownCatcher'
@@ -26,23 +25,9 @@ const LandingContainer_Styled = styled.div`
   top: 26%;
   left: 50%;
   transform: translate(-50%);
-
-  &.exit-active {
-    opacity: 0;
-    transition: opacity 1s;
-  }
-
-  &.enter-active,
-  &.appear-active,
-  &.appear-done,
-  &.enter-done {
-    opacity: 1;
-    transition: opacity 1s;
-  }
-
 `
 
-const LandingContainer = ({ pageToShow, setPageToShow, setInitialInput }) => {
+const LandingContainer = ({ setPageToShow, setInitialInput }) => {
   // Keydown -> setKeydownEvent effect
   const keydownEvent = useKeydownCatcher()
 
@@ -56,21 +41,14 @@ const LandingContainer = ({ pageToShow, setPageToShow, setInitialInput }) => {
       setInitialInput(keydownEvent.key) // set initialInput as key
       setPageToShow('INTERFACE')  // switch to interface page
     }
-  }, [keydownEvent])
+  }, [keydownEvent, setPageToShow, setInitialInput])
 
   return (
-    <CSSTransition
-      in={pageToShow === 'LANDING'}
-      timeout={1000}
-      unmountOnExit
-      mountOnEnter
-    >
-      <LandingContainer_Styled>
-        <Clock_Styled />
-        <HorizontalRule_Styled />
-        <Date_Styled />
-      </LandingContainer_Styled>
-    </CSSTransition>
+    <LandingContainer_Styled>
+      <Clock_Styled />
+      <HorizontalRule_Styled />
+      <Date_Styled />
+    </LandingContainer_Styled>
   )
 }
 

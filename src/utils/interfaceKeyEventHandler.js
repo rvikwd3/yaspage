@@ -7,18 +7,18 @@ const interfaceKeyEventHandler = (event, input, setInput, setPage) => {
   const inputCmds = {
     'nonEmpty': {
       'normal': {
-        'non-control': () => setInput(input.concat(event.key)),
-        'Backspace': () => setInput(input.slice(0, -1)),
+        'non-control': () => setInput(prevInput => prevInput.concat(event.key)),
+        'Backspace': () => setInput(prevInput => prevInput.slice(0, -1)),
         'Delete': () => setInput(''),
         'Escape': () => setPage('LANDING'),
       },
       'ctrl': {
-        'Backspace': () => setInput(input.replace(/[\W]*\S+[\W]*$/, ''))
+        'Backspace': () => setInput(prevInput => prevInput.replace(/[\W]*\S+[\W]*$/, ''))
       }
     },
     'empty': {
       'normal': {
-        'non-control': () => setInput(input.concat(event.key)),
+        'non-control': () => setInput(prevInput => prevInput.concat(event.key)),
         'Backspace': () => setPage('LANDING'),
         'Escape': () => setPage('LANDING'),
         'Enter': () => window.location.href = 'https://www.google.com',
@@ -27,7 +27,7 @@ const interfaceKeyEventHandler = (event, input, setInput, setPage) => {
   }
 
   const isInputEmpty = !!input ? 'nonEmpty' : 'empty'
-  // console.log('Input: ', input, ' isInputEmpty', isInputEmpty)
+  // console.log('InputNotEmpty: ', isInputNotEmpty, ' cmdisInputEmpty', cmdIsInputEmpty)
 
   const isCtrlKey = event.ctrlKey ? 'ctrl' : 'normal'
   // console.log('isCtrlKey', isCtrlKey)

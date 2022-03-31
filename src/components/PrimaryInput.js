@@ -7,7 +7,7 @@ const highlightOnEmptyVariant = {
   initial: {
     opacity: 0,
     transition: {
-      duration: 0.05,
+      duration: 0.02,
     }
   },
   animate: {

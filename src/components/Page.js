@@ -17,7 +17,6 @@ const Page = () => {
     <div>
       {pageToShow === 'LANDING'
         && (<LandingContainer
-          pageToShow={pageToShow}
           setPageToShow={setPageToShow}
           setInitialInput={setInitialInput}
         />)
