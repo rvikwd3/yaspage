@@ -144,35 +144,34 @@ const SuggestionContainer_Styled = styled(SuggestionContainer)`
   // grid item
   grid-row: 2;
 
-  &.fade-appear,
-  &.fade-enter {
+  &.suggestionContainer-appear,
+  &.suggestionContainer-enter {
     opacity: 0;
     transform: translateY(-10px);
   }
 
-  &.fade-appear-active,
-  &.fade-enter-active {
+  &.suggestionContainer-appear-active,
+  &.suggestionContainer-enter-active {
     opacity: 1;
     transform: translateY(0px);
   }
 
-  &.fade-exit {
+  &.suggestionContainer-exit {
     opacity: 1;
     transform: translateY(0px);
   }
 
-  &.fade-exit-active {
+  &.suggestionContainer-exit-active {
     opacity: 0;
     transform: translateY(10px);
   }
 
-  &.fade-appear-active,
-  &.fade-enter-active,
-  &.fade-exit-active {
-    transition: opacity 280ms, transform 280ms cubic-bezier(0.25, 1, 0.5, 1);
-    transition-delay: 200ms;
+  &.suggestionContainer-appear-active,
+  &.suggestionContainer-enter-active,
+  &.suggestionContainer-exit-active {
+    transition: opacity 280ms, transform 330ms cubic-bezier(0.25, 1, 0.5, 1);
+    transition-delay: 170ms;
   }
-
 `
 
 export default SuggestionContainer_Styled

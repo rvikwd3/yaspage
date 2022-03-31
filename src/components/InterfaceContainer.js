@@ -50,8 +50,8 @@ const InterfaceContainer = ({ setPageToShow, initialInput }) => {
       <SwitchTransition>
         <CSSTransition
           key={interfaceInput}
-          classNames="fade"
-          timeout={280}
+          classNames="suggestionContainer"
+          timeout={330}
           appear={true}
           unmountOnExit
         >
