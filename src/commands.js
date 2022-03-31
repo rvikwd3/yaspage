@@ -53,7 +53,7 @@ const commands =
     {
       key: ['rd2l'],
       name: 'RD2L',
-      url: 'https://rd2l.gg/division',
+      url: 'https://rd2l.gg/divisions',
       iconUrl: 'icons/rd2l.png',
       hex: { primary: '#fa6b6b', secondary: '#ffffff' }
     },
