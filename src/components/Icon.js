@@ -10,7 +10,6 @@ const Icon = ({ src }) => {
   return (
     <img
       src={ require(`../assets/${src}`) }
-      loading='lazy'
       style={style}
     />
   )

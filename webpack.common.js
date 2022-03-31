@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const Dotenv = require('dotenv-webpack')
+const { allowedNodeEnvironmentFlags } = require('process')
 
 const config = {
   entry: "./src/index.js",
@@ -22,10 +23,21 @@ const config = {
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.(png|svg|jpg|jpeg)$/i,
+        test: /\.(svg)$/i,
         exclude: /(node_modules)/,
         type: 'asset/resource'
-      }
+      },
+      {
+        test: /\.(jpe?g|png|webp)$/i,
+        exclude: /(node_modules)/,
+        use: {
+          loader: "responsive-loader",
+          options: {
+            adapter: require('responsive-loader/sharp'),
+            format: 'avif',
+          },
+        },
+      },
     ],
   },
   plugins: [

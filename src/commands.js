@@ -61,7 +61,7 @@ const commands =
       key: ['fhdl', 'fluffy'],
       name: 'fhdl',
       url: 'http://www.fhdl.org/',
-      iconUrl: 'icons/fhdl.png',
+      iconUrl: 'icons/fhdl.webp',
       hex: { primary: '#fa6b6b', secondary: '#ffffff' }
     },
     {
