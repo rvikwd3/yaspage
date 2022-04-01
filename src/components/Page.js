@@ -12,7 +12,7 @@ import LandingContainer from './LandingContainer'
 *     Add key to interface input
 *   When InterfaceContainer signals showLanding, show LandingContainer
 */
-const Page = () => {
+const Page = ({ backgroundUrl }) => {
   const [pageToShow, setPageToShow] = useState('LANDING')
   const [initialInput, setInitialInput] = useState('')
   return (
@@ -30,6 +30,7 @@ const Page = () => {
             return <LandingContainer
               setPageToShow={setPageToShow}
               setInitialInput={setInitialInput}
+              backgroundUrl={backgroundUrl}
             />
           case 'INTERFACE':
             return <InterfaceContainer

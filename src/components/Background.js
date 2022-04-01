@@ -14,7 +14,7 @@ const BackgroundDiv = styled.div`
   object-fit: cover;
   opacity: 0.88;
 
-  z-index: -1;
+  z-index: -10;
 `
 
 const Background = ({ highResUrl, lowResUrl }) => {
