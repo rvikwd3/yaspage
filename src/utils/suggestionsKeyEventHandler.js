@@ -34,20 +34,12 @@ const suggestionsKeyEventHandler = (event, input, hlIndex, setHlIndex, suggestio
       }
     },
     'Enter': () => {
-      if (hlIndex === 0) {
-        // if no suggestions google search whatever is in input
-        if (suggestions.length === 0) {
-          window.location.href = googleSearchBuildQuery(input)
-        }
-        // if there is a suggestion, redirect to its url
-        // prioritize highlighted suggestions
-        if (suggestions.length > 0) {
-          // check if first suggestion is command
-          const matchingCommand = commands.find(command => command.key.includes(input))
-          matchingCommand
-            ? window.location.href = suggestions[0].url  // if no highlight but there is command go to command url
-            : window.location.href = googleSearchBuildQuery(input)
-        }
+      if (hlIndex === 0) {  // on no keypress to highlight a suggestion
+        // if matching command exists redirect to that
+        const matchingCommand = commands.find(command => command.key.includes(input))
+        matchingCommand
+          ? window.location.href = matchingCommand.url  // if no highlight but there is command go to command url
+          : window.location.href = googleSearchBuildQuery(input)  // if no matchingCommand redirect to google query
       }
       const highlightedSuggestion = suggestions.find(s => s.highlight)
       if (highlightedSuggestion) window.location.href = highlightedSuggestion.url

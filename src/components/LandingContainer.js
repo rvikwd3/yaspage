@@ -44,11 +44,13 @@ const LandingContainer = ({ setPageToShow, setInitialInput }) => {
   }, [keydownEvent, setPageToShow, setInitialInput])
 
   return (
-    <LandingContainer_Styled>
-      <Clock_Styled />
-      <HorizontalRule_Styled />
-      <Date_Styled />
-    </LandingContainer_Styled>
+    <div>
+      <LandingContainer_Styled>
+        <Clock_Styled />
+        <HorizontalRule_Styled />
+        <Date_Styled />
+      </LandingContainer_Styled>
+    </div>
   )
 }
 
