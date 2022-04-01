@@ -13,11 +13,7 @@
 ### Suggestions
 - [x] Add DuckDuckGo Query API suggestions
 - [x] Fix multiple re-render pending useEffect
-- [ ] Transitions/Framer motion on incoming/outgoing suggestions
-
-### Custom Search Bangs (Maybe?)
-- [ ] Bang to custom search eg. "!yt hermitcraft season 9"
-- [ ] Check DDG Bang API
+- [x] Transitions/Framer motion on incoming/outgoing suggestions
 
 ### Extra Panels
 - [ ] liquipedia upcoming matches
