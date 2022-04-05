@@ -1,6 +1,6 @@
 export const isControlKey = (k) => {
   if (
-    k === 'Caps Lock'
+    k === 'CapsLock'
     ||  k === 'Shift'
     ||  k === 'Alt'
     ||  k === 'F1'

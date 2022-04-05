@@ -21,61 +21,6 @@ const CONFIG = {
   // querySearchDelimiter: ' ',
 
   /*
-  * Constants related to liquipedia API
-  */
-  liquipediaApi: {
-    upcomingMatchesLimit: 3,  // number of upcoming matches to show in the Upcoming Matches Panel
-    upcomingMatchesApiUrl: 'https://liquipedia.net/dota2/api.php?action=parse&format=json&formatversion=2&pageid=25928',
-    upcomingMatchesPageUrl: 'https://liquipedia.net/dota2/Liquipedia:Upcoming_and_ongoing_matches',
-    defaultMatches: [
-      {
-        matchLeague: {
-          abbreviatedTitle: 'DPC SEA T2: Div. I',
-          iconUrl: '/commons/images/thumb/2/2f/DPC_SEA_2021-2022_Tour_2_icon_allmode.png/49px-DPC_SEA_2021-2022_Tour_2_icon_allmode.png',
-          pageUrl: '/dota2/Dota_Pro_Circuit/2021-22/2/Southeast_Asia/Division_I'
-        },
-        matchTwitchUser: 'Beyond_the_Summit',
-        matchTimestamp: '1648883400',
-        matchLength: { text: 'Best-of-three', abbreviated: 'Bo3' },
-        teamLeft: {
-          title: 'Team SMG',
-          abbreviatedTitle: 'SMG',
-          pageUrl: '/dota2/Team_SMG',
-          imgSrc: '/commons/images/thumb/9/91/Team_SMG_2022_allmode.png/66px-Team_SMG_2022_allmode.png'
-        },
-        teamRight: {
-          title: 'Neon Esports',
-          abbreviatedTitle: 'Neon',
-          pageUrl: '/dota2/Neon_Esports',
-          imgSrc: '/commons/images/thumb/4/45/Neon_Esports_allmode.png/50px-Neon_Esports_allmode.png'
-        }
-      },
-      {
-        matchLeague: {
-          abbreviatedTitle: 'DPC SEA T2: Div. I',
-          iconUrl: '/commons/images/thumb/2/2f/DPC_SEA_2021-2022_Tour_2_icon_allmode.png/49px-DPC_SEA_2021-2022_Tour_2_icon_allmode.png',
-          pageUrl: '/dota2/Dota_Pro_Circuit/2021-22/2/Southeast_Asia/Division_I'
-        },
-        matchTwitchUser: 'Beyond_the_Summit',
-        matchTimestamp: '1648893600',
-        matchLength: { text: 'Best-of-three', abbreviated: 'Bo3' },
-        teamLeft: {
-          title: 'Fnatic',
-          abbreviatedTitle: 'Fnatic',
-          pageUrl: '/dota2/Fnatic',
-          imgSrc: '/commons/images/thumb/f/f9/Fnatic_2020_allmode.png/77px-Fnatic_2020_allmode.png'
-        },
-        teamRight: {
-          title: 'Nigma Galaxy SEA',
-          abbreviatedTitle: 'NGX.SEA',
-          pageUrl: '/dota2/Nigma_Galaxy_SEA',
-          imgSrc: '/commons/images/thumb/5/56/Nigma_Galaxy_darkmode.png/50px-Nigma_Galaxy_darkmode.png'
-        }
-      }
-    ]
-  },
-
-  /*
   * Constants related to GosuGamers Parser API
   */
   gosuApi: {
