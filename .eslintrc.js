@@ -13,7 +13,7 @@ module.exports = {
       "ecmaFeatures": {
           "jsx": true
       },
-      "ecmaVersion": 2018,
+      "ecmaVersion": 2020,
       "sourceType": "module"
   },
   "plugins": [
@@ -44,6 +44,12 @@ module.exports = {
       ],
       "arrow-spacing": [
           "error", { "before": true, "after": true }
+      ],
+      "no-unused-vars": [
+          "error",
+          {
+              "ignoreRestSiblings": true
+          }
       ],
       "no-console": 0,
       "react/prop-types": 0,
