@@ -5,6 +5,7 @@ import useKeydownCatcher from '../hooks/useKeydownCatcher'
 import { isControlKey } from '../utils/isControlKey'
 import Clock_Styled from './Clock'
 import Date_Styled from './FormattedDate'
+import UpcomingMatchesPanel_Styled from './UpcomingMatchesPanel'
 
 const HorizontalRule_Styled = styled.hr`
   grid-row: 2;
@@ -27,7 +28,7 @@ const LandingContainer_Styled = styled.div`
   transform: translate(-50%);
 `
 
-const LandingContainer = ({ setPageToShow, setInitialInput }) => {
+const LandingContainer = ({ setPageToShow, setInitialInput, backgroundUrl }) => {
   // Keydown -> setKeydownEvent effect
   const keydownEvent = useKeydownCatcher()
 
@@ -44,12 +45,15 @@ const LandingContainer = ({ setPageToShow, setInitialInput }) => {
   }, [keydownEvent, setPageToShow, setInitialInput])
 
   return (
-    <div>
+    <div style={{ position: 'relative', }}>
       <LandingContainer_Styled>
         <Clock_Styled />
         <HorizontalRule_Styled />
         <Date_Styled />
       </LandingContainer_Styled>
+      <UpcomingMatchesPanel_Styled
+        backgroundUrl={backgroundUrl}
+      />
     </div>
   )
 }

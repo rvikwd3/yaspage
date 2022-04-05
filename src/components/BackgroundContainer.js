@@ -9,7 +9,7 @@ import Background from './Background'
 // call api and get image url
 // save image url as localHigh/LowBackgroundUrl
 // save current date as lastUnsplashApiCallDate
-const BackgroundContainer = () => {
+const BackgroundContainer = ({ setBackgroundUrl }) => {
   const [highResUrl, setHighResUrl] = useState('')
   const [lowResUrl, setLowResUrl] = useState('')
   const [apiPending, setApiPending] = useState(true)
@@ -51,11 +51,13 @@ const BackgroundContainer = () => {
       setHighResUrl(localHighBackgroundUrl)
       setLowResUrl(localLowBackgroundUrl)
       setApiPending(false)
+      setBackgroundUrl(localHighBackgroundUrl)
     } else {
       getImageUrlsAndSetLocalStorage().then(({ apiHighResUrl, apiLowResUrl }) => {
         setHighResUrl(apiHighResUrl)
         setLowResUrl(apiLowResUrl)
         setApiPending(false)
+        setBackgroundUrl(apiHighResUrl)
       })
     }
   }, [])
