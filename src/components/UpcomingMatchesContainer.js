@@ -5,11 +5,12 @@ import { Scrollbars } from 'react-custom-scrollbars-2'
 import Match from './Match'
 import Spinner from './Spinner'
 import useGosuUpcomingMatches from '../hooks/useGosuUpcomingMatches'
+import MinimizeToggle_Styled from './MinimizeToggle'
 
 
 const MatchesContainer = styled.div`
   display: grid;
-  grid-template-columns: auto 55px 2.4em 55px 0.6fr auto;
+  grid-template-columns: auto 55px 2.6em 55px 0.6fr auto;
   grid-row-gap: 40px;
   align-items: center;
 
@@ -39,7 +40,7 @@ const PanelContainer = styled.div`
 `
 
 
-const UpcomingMatchesContainer = () => {
+const UpcomingMatchesContainer = ({ togglePanelMinimize }) => {
   // get matches from API
   // (spinner while matches are loading)
   // map matches inside matches container
@@ -48,6 +49,7 @@ const UpcomingMatchesContainer = () => {
   return (
     <div id="upcoming-matches-container">
       <PanelContainer>
+        <MinimizeToggle_Styled onClick={togglePanelMinimize} />
         <Scrollbars
           style={{ width: '100%', height: '100%', maxHeight: 'inherit' }}
           renderThumbVertical={props => <div {...props} className="thumb-vertical" />}

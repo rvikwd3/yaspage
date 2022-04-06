@@ -47,6 +47,8 @@ const CONFIG = {
     'winline_d2cl': 'https://www.twitch.tv/winline_d2cl',
     'ESL_DOTA2': 'https://www.twitch.tv/esl_dota2',
     'yuHengTV': 'https://www.twitch.tv/yuHengTV',
+    'BTS TV': 'https://www.twitch.tv/beyondthesummit',
+    'PWRDEsports1': 'https://www.twitch.tv/pwrdesports1',
   },
 
   /*

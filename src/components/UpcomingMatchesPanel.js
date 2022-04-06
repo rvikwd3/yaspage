@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import UpcomingMatchesContainer from './UpcomingMatchesContainer'
 
 const BlurBackground = styled.div`
@@ -46,13 +47,13 @@ const RisingHeader = styled.h2`
   transition: top 0.4s cubic-bezier(0.32, 0, 0.67, 0), opacity 0.4s cubic-bezier(0.83, 0, 0.17, 1);
 `
 
-const UpcomingMatchesPanel = ({ className, backgroundUrl }) => {
+const UpcomingMatchesPanel = ({ className, backgroundUrl, togglePanelMinimize }) => {
 
   return (
     <div className={className} id="panel-area" >
       <div style={{ position: 'relative', width: '100%', height: '100%' }}>
         <div style={{ overflow: 'hidden', width: '100%', height: '100%', borderRadius: '20px', }}>
-          <UpcomingMatchesContainer/>
+          <UpcomingMatchesContainer togglePanelMinimize={togglePanelMinimize} />
           <BlurBackground backgroundUrl={backgroundUrl} />
           <RisingHeader id="upcoming-matches-header">Upcoming Matches</RisingHeader>
         </div>
@@ -62,16 +63,16 @@ const UpcomingMatchesPanel = ({ className, backgroundUrl }) => {
 }
 
 const UpcomingMatchesPanel_Styled = styled(UpcomingMatchesPanel)`
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  margin-right: 4em;
-  margin-bottom: 2em;
-  width: 35em;
-  height: 19em;
-  box-shadow: 0 0 1.2rem rgba(0,0,0,0.18);
-  border-radius: 20px;
-`
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      margin-right: 4em;
+      margin-bottom: 2em;
+      width: 35em;
+      height: 19em;
+      box-shadow: 0 0 1.2rem rgba(0,0,0,0.18);
+      border-radius: 20px;
+      `
 
 
 export default UpcomingMatchesPanel_Styled

@@ -5,7 +5,7 @@ import useKeydownCatcher from '../hooks/useKeydownCatcher'
 import { isControlKey } from '../utils/isControlKey'
 import Clock_Styled from './Clock'
 import Date_Styled from './FormattedDate'
-import UpcomingMatchesPanel_Styled from './UpcomingMatchesPanel'
+import TogglablePanel from './TogglablePanel'
 
 const HorizontalRule_Styled = styled.hr`
   grid-row: 2;
@@ -51,7 +51,7 @@ const LandingContainer = ({ setPageToShow, setInitialInput, backgroundUrl }) => 
         <HorizontalRule_Styled />
         <Date_Styled />
       </LandingContainer_Styled>
-      <UpcomingMatchesPanel_Styled
+      <TogglablePanel
         backgroundUrl={backgroundUrl}
       />
     </div>

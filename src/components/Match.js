@@ -25,6 +25,15 @@ const MatchConnectDiv = styled.a`
   text-decoration: none;
   color: white;
   justify-self: center;
+  align-self: center;
+
+  transform: scale(1);
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s;
+  }
 `
 
 const MatchTimer = styled.a`
@@ -39,6 +48,7 @@ const MatchTimer = styled.a`
 
 const LogoLink = styled.a`
   justify-self: ${props => props.justifySelf};
+  align-self: center;
 `
 
 const TeamLogo = styled.img`
@@ -52,7 +62,15 @@ const TeamLogo = styled.img`
   height: 40px;
   object-fit: cover;
 
-  filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.3));
+  transform: scale(1);
+  filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.3));
+  transition: filter 0.3s, transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.6));
+    transition: filter 0.4s, transform 0.2s;
+  }
 `
 
 const Match = ({ match }) => {
@@ -72,7 +90,7 @@ const Match = ({ match }) => {
       <MatchConnectDiv
         href={match.matchLink}
       >
-        v
+        ✖
       </MatchConnectDiv>
       <LogoLink
         href={match.teamRight.teamLink}

@@ -24,6 +24,11 @@ const GlobalStyle = createGlobalStyle`
     transition: top 0.5s cubic-bezier(.35,1.23,.71,1.15), opacity 0.6s;
   }
 
+  #upcoming-matches-container:hover #upcoming-matches-minimize {
+    opacity: 1;
+    transition: transform 0.2s, opacity 0.4s;
+  }
+
   .thumb-vertical {
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 15px;
@@ -35,38 +40,66 @@ const GlobalStyle = createGlobalStyle`
     transition: box-shadow 200ms;
   }
 
-  &.containerFade-enter {
+  .containerFade-enter {
     opacity: 0;
   }
 
-  &.containerFade-appear {
+  .containerFade-appear {
     opacity: 0;
   }
 
-  &.containerFade-enter-active {
+  .containerFade-enter-active {
     opacity: 1;
   }
 
-  &.containerFade-appear-active {
+  .containerFade-appear-active {
     opacity: 1;
   }
 
-  &.containerFade-exit {
+  .containerFade-exit {
     opacity: 1;
   }
 
-  &.containerFade-exit-active {
+  .containerFade-exit-active {
     opacity: 0;
   }
   
-  &.containerFade-exit-done {
+  .containerFade-exit-done {
     opacity: 0;
   }
 
-  &.containerFade-enter-active,
-  &.containerFade-appear-active,
-  &.containerFade-exit-active {
+  .containerFade-enter-active,
+  .containerFade-appear-active,
+  .containerFade-exit-active {
     transition: opacity 230ms;
+  }
+
+  .minimize-enter {
+    opacity: 0;
+    transform: scale(0.5);
+    transform-origin: bottom right;
+  }
+
+  .minimize-enter-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .minimize-exit {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: bottom right;
+  }
+
+  .minimize-exit-active {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  .minimize-enter-active,
+  .minimize-appear-active,
+  .minimize-exit-active {
+    transition: transform 230ms cubic-bezier(0.65, 0, 0.35, 1), opacity 230ms cubic-bezier(0.5, 1, 0.89, 1);
   }
 
   .sk-cube-grid {
