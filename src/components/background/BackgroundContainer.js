@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import CONFIG from '../config'
-import { getUnsplashBackground } from '../utils/getUnsplashBackground'
+import CONFIG from '../../config'
+import { getUnsplashBackground } from '../../utils/getUnsplashBackground'
 
 import Background from './Background'
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import ProgressiveImageFC from '../components/ProgressiveImageFC'
+import ProgressiveImageFC from './ProgressiveImageFC'
 
 const BackgroundDiv = styled.div`
   display: inline-block;

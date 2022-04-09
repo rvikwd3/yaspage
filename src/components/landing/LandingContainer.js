@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
-import useKeydownCatcher from '../hooks/useKeydownCatcher'
-import { isControlKey } from '../utils/isControlKey'
+import useKeydownCatcher from '../../hooks/useKeydownCatcher'
+import { isControlKey } from '../../utils/isControlKey'
 import Clock_Styled from './Clock'
 import Date_Styled from './FormattedDate'
-import TogglablePanel from './TogglablePanel'
+import TogglablePanel from './upcomingMatches/TogglablePanel'
 
 const HorizontalRule_Styled = styled.hr`
   grid-row: 2;

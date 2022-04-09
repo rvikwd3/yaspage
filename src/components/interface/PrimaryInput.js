@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-import commands from '../commands'
+import commands from '../../commands'
 
 const highlightOnEmptyVariant = {
   initial: {

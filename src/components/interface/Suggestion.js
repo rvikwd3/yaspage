@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
-import StyledIcon from './Icon'
+import StyledIcon from '../Icon'
 
 const suggestionVariants = {
   hidden: {

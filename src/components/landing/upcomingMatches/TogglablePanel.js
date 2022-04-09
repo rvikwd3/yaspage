@@ -91,7 +91,7 @@ const TogglablePanel = ({ backgroundUrl }) => {
               onClick={togglePanelMinimize}
             >
               <img
-                src={require('../assets/icons/dota.png')}
+                src={require('../../../assets/icons/dota.png')}
                 style={{
                   objectFit: 'cover',
                   width: '60%',

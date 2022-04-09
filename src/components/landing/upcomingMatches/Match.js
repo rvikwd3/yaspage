@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import React from 'react'
-import formatMatchTime from '../utils/formatMatchTime'
+import formatMatchTime from '../../../utils/formatMatchTime'
 import Live from './Live'
 
 const TeamSpan = styled.a`
@@ -54,7 +54,7 @@ const LogoLink = styled.a`
 const TeamLogo = styled.img`
   content: ${props => {   // if default team logo, get from assets/icons
     return props.url === 'default'
-      ? `url(${require('../assets/icons/dota_small.png')})`
+      ? `url(${require('../../../assets/icons/dota_small.png')})`
       : `url(${props.url})`
   }};
 

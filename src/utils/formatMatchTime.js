@@ -1,4 +1,4 @@
-import Live from '../components/Live'
+import Live from '../components/landing/upcomingMatches/Live'
 
 const formatMatchTime = (timestamp) => {
   const nowDate = new Date()

@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 
-import useKeydownCatcher from '../hooks/useKeydownCatcher'
+import useKeydownCatcher from '../../hooks/useKeydownCatcher'
 
-import interfaceKeyEventHandler from '../utils/interfaceKeyEventHandler'
+import interfaceKeyEventHandler from '../../utils/interfaceKeyEventHandler'
 
 import PrimaryInput_Styled from './PrimaryInput'
 import SuggestionContainer_Styled from './SuggestionContainer_Styled'

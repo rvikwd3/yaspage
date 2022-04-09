@@ -7,7 +7,7 @@ const FormattedDate = ({ className }) => {
   useEffect( () => {
     let dayTimer = setInterval( () => {
       setDate(new Date())
-    }, 60 * 1000)
+    }, 60 * 1000) // every minute
 
     return () => clearInterval(dayTimer)
   }, [])

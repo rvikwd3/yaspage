@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-import CONFIG from '../config'
-import commands from '../commands'
-import defaultSuggestions from '../suggestionDefaults'
-import suggestionsKeyEventHandler from '../utils/suggestionsKeyEventHandler'
-import buildAutocompleteSuggestions from '../utils/buildAutocompleteSuggestions'
+import CONFIG from '../../config'
+import commands from '../../commands'
+import defaultSuggestions from '../../suggestionDefaults'
+import suggestionsKeyEventHandler from '../../utils/suggestionsKeyEventHandler'
+import buildAutocompleteSuggestions from '../../utils/buildAutocompleteSuggestions'
 import Suggestion_Styled from './Suggestion'
 
 // get interface input text

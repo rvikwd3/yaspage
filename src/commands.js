@@ -1,13 +1,13 @@
+/*
+  {
+    "key": input on which preset is loaded
+    "name": name of preset
+    "url": link which preset goes to on enter
+    "hues": {'primary hex', 'secondary hex'}
+  }
+*/
 const commands =
   [
-    /*
-      {
-        "key": input on which preset is loaded
-        "name": name of preset
-        "url": link which preset goes to on enter
-        "hues": {'primary hex', 'secondary hex'}
-      }
-    */
     {
       key: ['t', 'twitch'],
       name: 'twitch',

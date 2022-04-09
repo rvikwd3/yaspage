@@ -3,8 +3,8 @@ import React from 'react'
 import { Scrollbars } from 'react-custom-scrollbars-2'
 
 import Match from './Match'
-import Spinner from './Spinner'
-import useGosuUpcomingMatches from '../hooks/useGosuUpcomingMatches'
+import Spinner from '../Spinner'
+import useGosuUpcomingMatches from '../../../hooks/useGosuUpcomingMatches'
 import MinimizeToggle_Styled from './MinimizeToggle'
 
 

@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { CSSTransition } from 'react-transition-group'
 
-import InterfaceContainer from './InterfaceContainer'
-import LandingContainer from './LandingContainer'
+import InterfaceContainer from './interface/InterfaceContainer'
+import LandingContainer from './landing/LandingContainer'
 
 /*
 *   On non-control keydown:
