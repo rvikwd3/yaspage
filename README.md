@@ -14,6 +14,8 @@
     </tbody>
 </table>
 
+<h3 align='center'><a href="https://yaspage.netlify.app">Try it out here</a></h3>
+
 ### Extensibility
 As with Tilde, yaspage is meant to be customizable
 * Add default commands in the <a href="https://github.com/rvikwd3/yaspage/blob/main/src/commands.js">commands.js</a> file

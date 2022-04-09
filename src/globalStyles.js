@@ -74,34 +74,6 @@ const GlobalStyle = createGlobalStyle`
     transition: opacity 230ms;
   }
 
-  .minimize-enter {
-    opacity: 0;
-    transform: scale(0.5);
-    transform-origin: bottom right;
-  }
-
-  .minimize-enter-active {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  .minimize-exit {
-    opacity: 1;
-    transform: scale(1);
-    transform-origin: bottom right;
-  }
-
-  .minimize-exit-active {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-
-  .minimize-enter-active,
-  .minimize-appear-active,
-  .minimize-exit-active {
-    transition: transform 230ms cubic-bezier(0.65, 0, 0.35, 1), opacity 230ms cubic-bezier(0.5, 1, 0.89, 1);
-  }
-
   .sk-cube-grid {
     width: 40px;
     height: 40px;

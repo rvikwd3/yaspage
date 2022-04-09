@@ -5,14 +5,11 @@ import UpcomingMatchesPanel_Styled from './UpcomingMatchesPanel'
 
 const MinimizedButton = styled.div`
   position: fixed;
-  bottom: 0;
-  right: 0;
+  bottom: 3%;
+  right: 5%;
 
   width: 4em;
   height: 4em;
-
-  margin-right: 4em;
-  margin-bottom: 2em;
 
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.4);
@@ -28,8 +25,30 @@ const MinimizedButton = styled.div`
   transition: transform 0.2s cubic-bezier(0.11, 0, 0.5, 0);
 
   &:hover {
-    transform: translateY(-7px);
+    transform: translateY(-4px);
     transition: transform 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  &.minimize-enter {
+    opacity: 0;
+  }
+
+  &.minimize-enter-active {
+    opacity: 1;
+  }
+
+  &.minimize-exit {
+    opacity: 1;
+  }
+
+  &.minimize-exit-active {
+    opacity: 0;
+  }
+
+  &.minimize-enter-active,
+  &.minimize-appear-active,
+  &.minimize-exit-active {
+    transition: opacity 100ms cubic-bezier(0.65, 0, 0.35, 1);
   }
 
 `
@@ -57,10 +76,10 @@ const TogglablePanel = ({ backgroundUrl }) => {
   }
 
   return (
-    <TransitionGroup className="pageTransitionGroup">
+    <TransitionGroup className="upcomingMatchesPanelTransitionGroup">
       <CSSTransition
         key={minimized}
-        timeout={230}
+        timeout={500}
         appear={true}
         classNames="minimize"
         unmountOnExit

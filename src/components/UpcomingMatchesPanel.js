@@ -49,6 +49,11 @@ const RisingHeader = styled.h2`
 
 const UpcomingMatchesPanel = ({ className, backgroundUrl, togglePanelMinimize }) => {
 
+  /*
+  * Have div(overflow: hidden) child of 'position: relative' in order for child RisingHeader
+  * to bypass 'overflow: hidden' with 'position: absolute'
+  * https://stackoverflow.com/questions/8837050/allow-specific-tag-to-override-overflowhidden
+  */
   return (
     <div className={className} id="panel-area" >
       <div style={{ position: 'relative', width: '100%', height: '100%' }}>
@@ -63,16 +68,35 @@ const UpcomingMatchesPanel = ({ className, backgroundUrl, togglePanelMinimize })
 }
 
 const UpcomingMatchesPanel_Styled = styled(UpcomingMatchesPanel)`
-      position: fixed;
-      bottom: 0;
-      right: 0;
-      margin-right: 4em;
-      margin-bottom: 2em;
-      width: 35em;
-      height: 19em;
-      box-shadow: 0 0 1.2rem rgba(0,0,0,0.18);
-      border-radius: 20px;
-      `
+  position: fixed;
+  bottom: 3%;
+  right: 5%;
+  width: 35em;
+  height: 19em;
+  box-shadow: 0 0 1.2rem rgba(0,0,0,0.18);
+  border-radius: 20px;
+  
+  &.minimize-enter {
+    clip-path: circle(2em at 33em 17em);
+  }
 
+  &.minimize-enter-active {
+    clip-path: circle(75%);
+  }
+
+  &.minimize-exit {
+    clip-path: circle(75%);
+  }
+
+  &.minimize-exit-active {
+    clip-path: circle(2em at 33em 17em);
+  }
+
+  &.minimize-enter-active,
+  &.minimize-appear-active,
+  &.minimize-exit-active {
+    transition: clip-path 500ms cubic-bezier(0.65, 0, 0.35, 1);
+  }
+`
 
 export default UpcomingMatchesPanel_Styled
