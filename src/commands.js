@@ -148,6 +148,13 @@ const commands =
       iconUrl: 'icons/notion.png',
       hex: { primary: '#eeeeee', secondary: '#ffffff' }
     },
+    {
+      key: ['w', 'wa', 'whatsapp'],
+      name: 'whatsapp web',
+      url: 'https://web.whatsapp.com/',
+      iconUrl: 'icons/whatsapp.png',
+      hex: { primary: '#36b748', secondary: '#ffffff' }
+    },
   ]
 
 export default commands
